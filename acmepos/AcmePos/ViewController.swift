@@ -586,20 +586,7 @@ extension ViewController: SPIDelegate {
                     } else {
                         // We did not even get a response, like in the case of a time-out.
                     }
-                case .cashoutOnly:
-                    //TODO
-                    break
-                case .MOTO:
-                    //TODO
-                    break
-                case .settleEnquiry:
-                    //TODO
-                    break
-                case .preAuth:
-                    //TODO
-                    break
-                case .accountVerify:
-                    //TODO
+                default:
                     break
                 }
             }
