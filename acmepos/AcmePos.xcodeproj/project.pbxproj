@@ -323,16 +323,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AcmePosTests/Pods-AcmePosTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PMAlertController/PMAlertController.framework",
-				"${BUILT_PRODUCTS_DIR}/RNCryptor-objc/RNCryptor_objc.framework",
-				"${BUILT_PRODUCTS_DIR}/SPIClient-iOS/SPIClient_iOS.framework",
-				"${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PMAlertController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor_objc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SPIClient_iOS.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketRocket.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -347,16 +341,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AcmePos/Pods-AcmePos-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PMAlertController/PMAlertController.framework",
-				"${BUILT_PRODUCTS_DIR}/RNCryptor-objc/RNCryptor_objc.framework",
-				"${BUILT_PRODUCTS_DIR}/SPIClient-iOS/SPIClient_iOS.framework",
-				"${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PMAlertController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor_objc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SPIClient_iOS.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketRocket.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

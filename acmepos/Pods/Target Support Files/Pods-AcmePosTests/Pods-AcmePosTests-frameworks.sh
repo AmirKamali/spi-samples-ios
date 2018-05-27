@@ -144,15 +144,9 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/PMAlertController/PMAlertController.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/RNCryptor-objc/RNCryptor_objc.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SPIClient-iOS/SPIClient_iOS.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/PMAlertController/PMAlertController.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/RNCryptor-objc/RNCryptor_objc.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SPIClient-iOS/SPIClient_iOS.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
