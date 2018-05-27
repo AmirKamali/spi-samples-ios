@@ -483,7 +483,7 @@ extension ViewController: SPIDelegate {
     
     func txFlowStateString(_ txFlowState: SPITransactionFlowState) -> String {
         var buffer = "# Id: \(txFlowState.tid ?? "")\n"
-        buffer += "# Type: \(SPITransactionFlowState.txTypeString(txFlowState.type)!)\n"
+        buffer += "# Type: \(txFlowState.type)\n"
         buffer += "# RequestSent: \(txFlowState.isRequestSent)\n"
         buffer += "# WaitingForSignature: \(txFlowState.isAwaitingSignatureCheck)\n"
         buffer += "# Attempting to Cancel: \(txFlowState.isAttemptingToCancel)\n"
@@ -586,6 +586,21 @@ extension ViewController: SPIDelegate {
                     } else {
                         // We did not even get a response, like in the case of a time-out.
                     }
+                case .cashoutOnly:
+                    //TODO
+                    break
+                case .MOTO:
+                    //TODO
+                    break
+                case .settleEnquiry:
+                    //TODO
+                    break
+                case .preAuth:
+                    //TODO
+                    break
+                case .accountVerify:
+                    //TODO
+                    break
                 }
             }
         }
