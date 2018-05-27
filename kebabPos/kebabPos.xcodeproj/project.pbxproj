@@ -1,0 +1,578 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		29B013A520BAB40C00F93AAF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B013A420BAB40C00F93AAF /* AppDelegate.m */; };
+		29B013A820BAB40C00F93AAF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B013A720BAB40C00F93AAF /* ViewController.m */; };
+		29B013AB20BAB40C00F93AAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B013A920BAB40C00F93AAF /* Main.storyboard */; };
+		29B013AD20BAB40E00F93AAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29B013AC20BAB40E00F93AAF /* Assets.xcassets */; };
+		29B013B020BAB40E00F93AAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B013AE20BAB40E00F93AAF /* LaunchScreen.storyboard */; };
+		29B013B320BAB40E00F93AAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B013B220BAB40E00F93AAF /* main.m */; };
+		29B013BD20BAB40E00F93AAF /* kebabPosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B013BC20BAB40E00F93AAF /* kebabPosTests.m */; };
+		29B013C820BAB40E00F93AAF /* kebabPosUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B013C720BAB40E00F93AAF /* kebabPosUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		29B013B920BAB40E00F93AAF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B0139820BAB40C00F93AAF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29B0139F20BAB40C00F93AAF;
+			remoteInfo = kebabPos;
+		};
+		29B013C420BAB40E00F93AAF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B0139820BAB40C00F93AAF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29B0139F20BAB40C00F93AAF;
+			remoteInfo = kebabPos;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		29B013A020BAB40C00F93AAF /* kebabPos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kebabPos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B013A320BAB40C00F93AAF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		29B013A420BAB40C00F93AAF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		29B013A620BAB40C00F93AAF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		29B013A720BAB40C00F93AAF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		29B013AA20BAB40C00F93AAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		29B013AC20BAB40E00F93AAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		29B013AF20BAB40E00F93AAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		29B013B120BAB40E00F93AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29B013B220BAB40E00F93AAF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B013B820BAB40E00F93AAF /* kebabPosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kebabPosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B013BC20BAB40E00F93AAF /* kebabPosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kebabPosTests.m; sourceTree = "<group>"; };
+		29B013BE20BAB40E00F93AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29B013C320BAB40E00F93AAF /* kebabPosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kebabPosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B013C720BAB40E00F93AAF /* kebabPosUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kebabPosUITests.m; sourceTree = "<group>"; };
+		29B013C920BAB40E00F93AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		29B0139D20BAB40C00F93AAF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B013B520BAB40E00F93AAF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B013C020BAB40E00F93AAF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		29B0139720BAB40C00F93AAF = {
+			isa = PBXGroup;
+			children = (
+				29B013A220BAB40C00F93AAF /* kebabPos */,
+				29B013BB20BAB40E00F93AAF /* kebabPosTests */,
+				29B013C620BAB40E00F93AAF /* kebabPosUITests */,
+				29B013A120BAB40C00F93AAF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		29B013A120BAB40C00F93AAF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				29B013A020BAB40C00F93AAF /* kebabPos.app */,
+				29B013B820BAB40E00F93AAF /* kebabPosTests.xctest */,
+				29B013C320BAB40E00F93AAF /* kebabPosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B013A220BAB40C00F93AAF /* kebabPos */ = {
+			isa = PBXGroup;
+			children = (
+				29B013A320BAB40C00F93AAF /* AppDelegate.h */,
+				29B013A420BAB40C00F93AAF /* AppDelegate.m */,
+				29B013A620BAB40C00F93AAF /* ViewController.h */,
+				29B013A720BAB40C00F93AAF /* ViewController.m */,
+				29B013A920BAB40C00F93AAF /* Main.storyboard */,
+				29B013AC20BAB40E00F93AAF /* Assets.xcassets */,
+				29B013AE20BAB40E00F93AAF /* LaunchScreen.storyboard */,
+				29B013B120BAB40E00F93AAF /* Info.plist */,
+				29B013B220BAB40E00F93AAF /* main.m */,
+			);
+			path = kebabPos;
+			sourceTree = "<group>";
+		};
+		29B013BB20BAB40E00F93AAF /* kebabPosTests */ = {
+			isa = PBXGroup;
+			children = (
+				29B013BC20BAB40E00F93AAF /* kebabPosTests.m */,
+				29B013BE20BAB40E00F93AAF /* Info.plist */,
+			);
+			path = kebabPosTests;
+			sourceTree = "<group>";
+		};
+		29B013C620BAB40E00F93AAF /* kebabPosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				29B013C720BAB40E00F93AAF /* kebabPosUITests.m */,
+				29B013C920BAB40E00F93AAF /* Info.plist */,
+			);
+			path = kebabPosUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		29B0139F20BAB40C00F93AAF /* kebabPos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29B013CC20BAB40E00F93AAF /* Build configuration list for PBXNativeTarget "kebabPos" */;
+			buildPhases = (
+				29B0139C20BAB40C00F93AAF /* Sources */,
+				29B0139D20BAB40C00F93AAF /* Frameworks */,
+				29B0139E20BAB40C00F93AAF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = kebabPos;
+			productName = kebabPos;
+			productReference = 29B013A020BAB40C00F93AAF /* kebabPos.app */;
+			productType = "com.apple.product-type.application";
+		};
+		29B013B720BAB40E00F93AAF /* kebabPosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29B013CF20BAB40E00F93AAF /* Build configuration list for PBXNativeTarget "kebabPosTests" */;
+			buildPhases = (
+				29B013B420BAB40E00F93AAF /* Sources */,
+				29B013B520BAB40E00F93AAF /* Frameworks */,
+				29B013B620BAB40E00F93AAF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				29B013BA20BAB40E00F93AAF /* PBXTargetDependency */,
+			);
+			name = kebabPosTests;
+			productName = kebabPosTests;
+			productReference = 29B013B820BAB40E00F93AAF /* kebabPosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		29B013C220BAB40E00F93AAF /* kebabPosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29B013D220BAB40E00F93AAF /* Build configuration list for PBXNativeTarget "kebabPosUITests" */;
+			buildPhases = (
+				29B013BF20BAB40E00F93AAF /* Sources */,
+				29B013C020BAB40E00F93AAF /* Frameworks */,
+				29B013C120BAB40E00F93AAF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				29B013C520BAB40E00F93AAF /* PBXTargetDependency */,
+			);
+			name = kebabPosUITests;
+			productName = kebabPosUITests;
+			productReference = 29B013C320BAB40E00F93AAF /* kebabPosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B0139820BAB40C00F93AAF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Assembly Payments";
+				TargetAttributes = {
+					29B0139F20BAB40C00F93AAF = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					29B013B720BAB40E00F93AAF = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = 29B0139F20BAB40C00F93AAF;
+					};
+					29B013C220BAB40E00F93AAF = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = 29B0139F20BAB40C00F93AAF;
+					};
+				};
+			};
+			buildConfigurationList = 29B0139B20BAB40C00F93AAF /* Build configuration list for PBXProject "kebabPos" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 29B0139720BAB40C00F93AAF;
+			productRefGroup = 29B013A120BAB40C00F93AAF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				29B0139F20BAB40C00F93AAF /* kebabPos */,
+				29B013B720BAB40E00F93AAF /* kebabPosTests */,
+				29B013C220BAB40E00F93AAF /* kebabPosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		29B0139E20BAB40C00F93AAF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B013B020BAB40E00F93AAF /* LaunchScreen.storyboard in Resources */,
+				29B013AD20BAB40E00F93AAF /* Assets.xcassets in Resources */,
+				29B013AB20BAB40C00F93AAF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B013B620BAB40E00F93AAF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B013C120BAB40E00F93AAF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		29B0139C20BAB40C00F93AAF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B013A820BAB40C00F93AAF /* ViewController.m in Sources */,
+				29B013B320BAB40E00F93AAF /* main.m in Sources */,
+				29B013A520BAB40C00F93AAF /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B013B420BAB40E00F93AAF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B013BD20BAB40E00F93AAF /* kebabPosTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B013BF20BAB40E00F93AAF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B013C820BAB40E00F93AAF /* kebabPosUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		29B013BA20BAB40E00F93AAF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29B0139F20BAB40C00F93AAF /* kebabPos */;
+			targetProxy = 29B013B920BAB40E00F93AAF /* PBXContainerItemProxy */;
+		};
+		29B013C520BAB40E00F93AAF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29B0139F20BAB40C00F93AAF /* kebabPos */;
+			targetProxy = 29B013C420BAB40E00F93AAF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		29B013A920BAB40C00F93AAF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B013AA20BAB40C00F93AAF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		29B013AE20BAB40E00F93AAF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B013AF20BAB40E00F93AAF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		29B013CA20BAB40E00F93AAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		29B013CB20BAB40E00F93AAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		29B013CD20BAB40E00F93AAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NKNX58SCJ2;
+				INFOPLIST_FILE = kebabPos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.assemblypayments.kebabPos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		29B013CE20BAB40E00F93AAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NKNX58SCJ2;
+				INFOPLIST_FILE = kebabPos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.assemblypayments.kebabPos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		29B013D020BAB40E00F93AAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = kebabPosTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.assemblypayments.kebabPosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kebabPos.app/kebabPos";
+			};
+			name = Debug;
+		};
+		29B013D120BAB40E00F93AAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = kebabPosTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.assemblypayments.kebabPosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kebabPos.app/kebabPos";
+			};
+			name = Release;
+		};
+		29B013D320BAB40E00F93AAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = kebabPosUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.assemblypayments.kebabPosUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = kebabPos;
+			};
+			name = Debug;
+		};
+		29B013D420BAB40E00F93AAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = kebabPosUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.assemblypayments.kebabPosUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = kebabPos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		29B0139B20BAB40C00F93AAF /* Build configuration list for PBXProject "kebabPos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29B013CA20BAB40E00F93AAF /* Debug */,
+				29B013CB20BAB40E00F93AAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29B013CC20BAB40E00F93AAF /* Build configuration list for PBXNativeTarget "kebabPos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29B013CD20BAB40E00F93AAF /* Debug */,
+				29B013CE20BAB40E00F93AAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29B013CF20BAB40E00F93AAF /* Build configuration list for PBXNativeTarget "kebabPosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29B013D020BAB40E00F93AAF /* Debug */,
+				29B013D120BAB40E00F93AAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		29B013D220BAB40E00F93AAF /* Build configuration list for PBXNativeTarget "kebabPosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29B013D320BAB40E00F93AAF /* Debug */,
+				29B013D420BAB40E00F93AAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B0139820BAB40C00F93AAF /* Project object */;
+}
