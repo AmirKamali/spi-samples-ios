@@ -58,7 +58,7 @@ class ViewController: UIViewController {
             SPILogMsg("KEYS \(encKey):\(hmacKey)")
             spi.setSecretEncKey(encKey, hmacKey: hmacKey)
         }
-
+        
         spi.delegate = self
         spi.start() // should only be called once here only after instantiation.
     }
