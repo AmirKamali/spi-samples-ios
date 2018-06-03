@@ -149,10 +149,15 @@ class ConnectionViewController: UITableViewController,NotificationListener {
     }
     @IBAction func pairingCancel() {
         KebabApp.current.client.pairingCancel()
+        
+    }
+    @IBAction func unpair() {
+        KebabApp.current.client.unpair()
+        
     }
     func txFlowStateString(_ txFlowState: SPITransactionFlowState) -> String {
         var buffer = "# Id: \(txFlowState.tid ?? "")\n"
-        buffer += "# Type: \(SPITransactionFlowState.txTypeString(txFlowState.type)!)\n"
+        buffer += "# Type: \(txFlowState.typeString)\n"
         buffer += "# RequestSent: \(txFlowState.isRequestSent)\n"
         buffer += "# WaitingForSignature: \(txFlowState.isAwaitingSignatureCheck)\n"
         buffer += "# Attempting to Cancel: \(txFlowState.isAttemptingToCancel)\n"
@@ -255,6 +260,16 @@ class ConnectionViewController: UITableViewController,NotificationListener {
                     } else {
                         // We did not even get a response, like in the case of a time-out.
                     }
+                case .cashoutOnly:
+                    break
+                case .MOTO:
+                    break
+                case .settleEnquiry:
+                    break
+                case .preAuth:
+                    break
+                case .accountVerify:
+                    break
                 }
             }
         }

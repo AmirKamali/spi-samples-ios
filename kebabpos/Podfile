@@ -6,7 +6,9 @@ target 'kebabPos' do
   use_frameworks!
 
   # Pods for kebabPos
-  pod 'SPIClient-iOS', '~> 2.0.5'
+  #pod 'SPIClient-iOS', '~> 2.0.5'
+  pod 'SPIClient-iOS',  :git => 'https://github.com/AmirKamali/spi-client-ios.git', :branch => 'version-2.1-PayAtTable'  
+
 
 
   target 'kebabPosTests' do

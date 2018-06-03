@@ -27,7 +27,7 @@ class SettingsProvider{
     func restoreDefaultValues(){
         if (UserDefaults.standard.value(forKey: SettingKeys.posId.rawValue) == nil){
             posId = "ACMEPOS3TEST"
-            eftPosAddress = "192.168.1.41"//"emulator-prod.herokuapp.com"
+            eftPosAddress = "192.168.1.37"//"emulator-prod.herokuapp.com"
         }
         
     }

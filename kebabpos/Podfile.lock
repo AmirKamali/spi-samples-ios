@@ -6,19 +6,28 @@ PODS:
     - SocketRocket
 
 DEPENDENCIES:
-  - SPIClient-iOS (~> 2.0.5)
+  - SPIClient-iOS (from `https://github.com/AmirKamali/spi-client-ios.git`, branch `version-2.1-PayAtTable`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - RNCryptor-objc
     - SocketRocket
-    - SPIClient-iOS
+
+EXTERNAL SOURCES:
+  SPIClient-iOS:
+    :branch: version-2.1-PayAtTable
+    :git: https://github.com/AmirKamali/spi-client-ios.git
+
+CHECKOUT OPTIONS:
+  SPIClient-iOS:
+    :commit: cb0bf1c6f166174692f33c768852a0cbaa506ecd
+    :git: https://github.com/AmirKamali/spi-client-ios.git
 
 SPEC CHECKSUMS:
   RNCryptor-objc: d1b228f9c02e2173df063f0617684c134aed890e
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   SPIClient-iOS: 94c4b4fd6b5f23e1c600d627a565512ccf3fb562
 
-PODFILE CHECKSUM: a2c78245039129ce182310538ff6a1b192c29388
+PODFILE CHECKSUM: cb12a6b00fa9bf52d40d0c67efc114a88f9c7238
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3
