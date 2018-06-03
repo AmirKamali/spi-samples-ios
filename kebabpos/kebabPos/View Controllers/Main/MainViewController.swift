@@ -21,7 +21,7 @@ class MainViewController: UITableViewController,NotificationListener {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        registerForEvents(appEvents: [.connectionStatusChanged])
+        registerForEvents(appEvents: [.connectionStatusChanged,.transactionFlowStateChanged])
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,6 +50,13 @@ class MainViewController: UITableViewController,NotificationListener {
             }
             DispatchQueue.main.async {
                 self.refreshConnectionInfo(state: state)
+            }
+        case AppEvent.transactionFlowStateChanged.rawValue:
+            guard let state = notification.object as? SPIState else {
+                return
+            }
+            DispatchQueue.main.async {
+                self.transactionFlowChanged(state: state)
             }
         default:
             break

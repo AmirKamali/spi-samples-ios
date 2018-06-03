@@ -16,6 +16,8 @@ class ConnectionViewController: UITableViewController,NotificationListener {
     @IBAction func pairButtonClicked(_ sender: Any) {
         KebabApp.current.settings.posId = txt_posId.text
         KebabApp.current.settings.eftPosAddress = txt_posAddress.text
+        KebabApp.current.settings.encriptionKey = nil
+        KebabApp.current.settings.hmacKey = nil
         KebabApp.current.client.pair()
     }
    
@@ -76,7 +78,14 @@ class ConnectionViewController: UITableViewController,NotificationListener {
                 SPILogMsg("# [pair] - start pairing")
                 
             case .pairing:
-                showPairing(state)
+                
+                KebabApp.current.client.ackFlowEndedAndBack { (alreadyInIdle, state) in
+                    print("setting to idle :\(alreadyInIdle) state:\(state)")
+                    if let state = state{
+                        self.showPairing(state)
+                    }
+                }
+                
                 
             default:
                 showError("# .. Unexpected Flow .. \(KebabApp.current.client.state.flow.rawValue)")
@@ -157,7 +166,7 @@ class ConnectionViewController: UITableViewController,NotificationListener {
     }
     func txFlowStateString(_ txFlowState: SPITransactionFlowState) -> String {
         var buffer = "# Id: \(txFlowState.tid ?? "")\n"
-        buffer += "# Type: \(txFlowState.typeString)\n"
+  //      buffer += "# Type: \(txFlowState.typeString)\n"
         buffer += "# RequestSent: \(txFlowState.isRequestSent)\n"
         buffer += "# WaitingForSignature: \(txFlowState.isAwaitingSignatureCheck)\n"
         buffer += "# Attempting to Cancel: \(txFlowState.isAttemptingToCancel)\n"
@@ -260,16 +269,16 @@ class ConnectionViewController: UITableViewController,NotificationListener {
                     } else {
                         // We did not even get a response, like in the case of a time-out.
                     }
-                case .cashoutOnly:
-                    break
-                case .MOTO:
-                    break
-                case .settleEnquiry:
-                    break
-                case .preAuth:
-                    break
-                case .accountVerify:
-                    break
+//                case .cashoutOnly:
+//                    break
+//                case .MOTO:
+//                    break
+//                case .settleEnquiry:
+//                    break
+//                case .preAuth:
+//                    break
+//                case .accountVerify:
+//                    break
                 }
             }
         }

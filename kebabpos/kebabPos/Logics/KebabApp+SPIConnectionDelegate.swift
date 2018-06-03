@@ -34,8 +34,8 @@ extension KebabApp:SPIDelegate{
             SPILogMsg("# -----------------------------------------")
             
             // In prod store them in the key chain
-            settings.encriptionKey = secrets.encKey
-            settings.hmacKey = secrets.hmacKey
+            settings.encriptionKey = secrets.encKey!
+            settings.hmacKey = secrets.hmacKey!
             
         } else {
             SPILogMsg("\n\n\n# --------- THE SECRETS HAVE BEEN VOIDED -----------")

@@ -20,6 +20,7 @@
 		298DCD0120BAF20D0081940A /* KebabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298DCD0020BAF20D0081940A /* KebabApp.swift */; };
 		298DCD0320BAFBD10081940A /* KebabApp+SPIConnectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298DCD0220BAFBD10081940A /* KebabApp+SPIConnectionDelegate.swift */; };
 		298DCD0620BAFDD20081940A /* AppEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298DCD0520BAFDD20081940A /* AppEvents.swift */; };
+		2998F79F20C41EAB00431BE1 /* MainViewController+TransactionFlowChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2998F79E20C41EAA00431BE1 /* MainViewController+TransactionFlowChange.swift */; };
 		29B013AB20BAB40C00F93AAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B013A920BAB40C00F93AAF /* Main.storyboard */; };
 		29B013AD20BAB40E00F93AAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29B013AC20BAB40E00F93AAF /* Assets.xcassets */; };
 		29B013B020BAB40E00F93AAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B013AE20BAB40E00F93AAF /* LaunchScreen.storyboard */; };
@@ -61,6 +62,7 @@
 		298DCD0020BAF20D0081940A /* KebabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KebabApp.swift; sourceTree = "<group>"; };
 		298DCD0220BAFBD10081940A /* KebabApp+SPIConnectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KebabApp+SPIConnectionDelegate.swift"; sourceTree = "<group>"; };
 		298DCD0520BAFDD20081940A /* AppEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEvents.swift; sourceTree = "<group>"; };
+		2998F79E20C41EAA00431BE1 /* MainViewController+TransactionFlowChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+TransactionFlowChange.swift"; sourceTree = "<group>"; };
 		29B013A020BAB40C00F93AAF /* kebabPos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kebabPos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B013AA20BAB40C00F93AAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		29B013AC20BAB40E00F93AAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			children = (
 				298DCCF920BAEE610081940A /* MainViewController.swift */,
 				29534F5720BD8CE30048C0E0 /* MainViewController+Actions.swift */,
+				2998F79E20C41EAA00431BE1 /* MainViewController+TransactionFlowChange.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2998F79F20C41EAB00431BE1 /* MainViewController+TransactionFlowChange.swift in Sources */,
 				298DCD0120BAF20D0081940A /* KebabApp.swift in Sources */,
 				29534F5820BD8CE30048C0E0 /* MainViewController+Actions.swift in Sources */,
 				298DCD0620BAFDD20081940A /* AppEvents.swift in Sources */,
