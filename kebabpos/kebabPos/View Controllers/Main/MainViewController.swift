@@ -16,6 +16,7 @@ class MainViewController: UITableViewController,NotificationListener {
     @IBOutlet weak var signatureFromEFTPos: UISwitch!
     @IBOutlet weak var btnConnection: UIBarButtonItem!
     @IBOutlet weak var txtTransactionAmount: UITextField!
+    @IBOutlet weak var txtCashOutAmount: UITextField!
     @IBOutlet weak var txtOutput: UITextView!
     
     override func viewDidLoad() {

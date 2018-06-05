@@ -9,8 +9,12 @@
 import Foundation
 import SPIClient_iOS
 extension MainViewController{
+    var newRefrenceId:String {
+        let randomName = "localRef_\(arc4random()%999999)"
+        return randomName
+    }
     @IBAction func btnPurchaseClicked(_ sender: Any) {
-        let referenceId = "local-refId-001" //Local referenceId
+        let referenceId = newRefrenceId //Local referenceId
         let amount = 120 //Cents
         
         client.initiatePurchaseTx(referenceId, amountCents: amount,completion: printResult)
@@ -18,17 +22,17 @@ extension MainViewController{
     @IBAction func btnMotoClicked(_ sender: Any) {
         let referenceId = "local-refId-001" //Local referenceId
         let amount = 120 //Cents
-       // client.initiateMotoPurchaseTx(referenceId, amountCents: amount, completion: printResult)
+  //      client.initiateMotoPurchaseTx(referenceId, amountCents: amount, completion: printResult)
     }
     @IBAction func btnRefundClicked(_ sender: Any) {
         let referenceId = "local-refId-001" //Local referenceId
      let amount = 120 //Cents
-        client.initiateRefundTx(referenceId, amountCents: amount, completion: printResult)
+  //      client.initiateRefundTx(referenceId, amountCents: amount, completion: printResult)
     }
     @IBAction func btnCashOutClicked(_ sender: Any) {
         let referenceId = "local-refId-001" //Local referenceId
         let amount = 120 //Cents
-       // client.initiateCashoutOnlyTx(referenceId, amountCents: amount, completion: printResult)
+    //    client.initiateCashoutOnlyTx(referenceId, amountCents: amount, completion: printResult)
     }
     @IBAction func btnSettleClicked(_ sender: Any) {
         let referenceId = "local-refId-001" //Local referenceId
@@ -37,7 +41,7 @@ extension MainViewController{
     }
     @IBAction func btnSettleEnquiryClicked(_ sender: Any) {
         let referenceId = "local-refId-001" //Local referenceId
-   //     client.initiateSettlementEnquiry(referenceId, completion: printResult)
+  //      client.initiateSettlementEnquiry(referenceId, completion: printResult)
     }
     func printResult(result:SPIInitiateTxResult?){
         DispatchQueue.main.async {
