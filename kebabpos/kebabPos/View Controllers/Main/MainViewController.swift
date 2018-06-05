@@ -19,6 +19,7 @@ class MainViewController: UITableViewController,NotificationListener {
     @IBOutlet weak var txtCashOutAmount: UITextField!
     @IBOutlet weak var txtOutput: UITextView!
     
+    @IBOutlet weak var lbl_flowStatus: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,40 +51,19 @@ class MainViewController: UITableViewController,NotificationListener {
                 return
             }
             DispatchQueue.main.async {
-                self.refreshConnectionInfo(state: state)
+                self.stateChanged(state: state)
             }
         case AppEvent.transactionFlowStateChanged.rawValue:
             guard let state = notification.object as? SPIState else {
                 return
             }
             DispatchQueue.main.async {
-                self.transactionFlowChanged(state: state)
+           //     self.transactionFlowChanged(state: state)
             }
         default:
             break
         }
     }
-    func refreshConnectionInfo(state:SPIState){
-        lblStatus.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        lblStatus.textColor = UIColor.darkGray
-        btnConnection.title = "Pair"
-        switch state.status {
-        case .pairedConnected:
-            lblStatus.text = "Connected"
-            lblStatus.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightSemibold)
-            lblStatus.textColor = UIColor(red: 23.0/256, green: 156.0/255, blue: 63.0/255, alpha: 1.0)
-            btnConnection.title = "Connection"
-        case .pairedConnecting:
-            lblStatus.text = "Connecting"
-            
-            break
-        case .unpaired:
-            lblStatus.text = "Not Connected"
-            break
-        }
-        lblPosId.text = KebabApp.current.settings.posId
-        lblPosAddress.text = KebabApp.current.settings.eftPosAddress
-        self.title = lblStatus.text
-    }
+   
  
 }

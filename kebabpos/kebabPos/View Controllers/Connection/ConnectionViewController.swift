@@ -288,8 +288,7 @@ class ConnectionViewController: UITableViewController,NotificationListener {
     func acknowledge() {
         SPILogMsg("acknowledge")
         
-        KebabApp.current.client.ackFlowEndedAndBack { [weak self] alreadyMovedToIdleState, state in
-            guard let `self` = self else { return }
+        KebabApp.current.client.ackFlowEndedAndBack {  alreadyMovedToIdleState, state in
             self.printStatusAndAction(KebabApp.current.client.state)
         }
     }
@@ -342,7 +341,7 @@ class ConnectionViewController: UITableViewController,NotificationListener {
                 }
             }
         DispatchQueue.main.async {
-        self.present(alertVC, animated: true, completion: nil)
+            self.present(alertVC, animated: true, completion: nil)
         }
         
     }

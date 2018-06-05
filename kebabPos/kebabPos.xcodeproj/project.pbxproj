@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1C0D4F94A9FAF5CE3FB798C1 /* Pods_kebabPosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01616ABAC36F1BDFC6ADCC84 /* Pods_kebabPosUITests.framework */; };
 		1F1954685EFC9AF5D52FC44B /* Pods_kebabPos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35FCD202F68FEAB23A8FC5B /* Pods_kebabPos.framework */; };
+		290EBBB020C6D92F00D98C3A /* MainViewController+PrintStatusActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EBBAF20C6D92F00D98C3A /* MainViewController+PrintStatusActions.swift */; };
+		290EBBB220C6DFEC00D98C3A /* SPIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EBBB120C6DFEC00D98C3A /* SPIExtensions.swift */; };
+		290EBBB420C6E43300D98C3A /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EBBB320C6E43300D98C3A /* Date+String.swift */; };
 		29534F5120BC43320048C0E0 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29534F5020BC43320048C0E0 /* UIViewController+Alert.swift */; };
 		29534F5320BC48BF0048C0E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29534F5220BC48BF0048C0E0 /* AppDelegate.swift */; };
 		29534F5520BD61FC0048C0E0 /* NotificationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29534F5420BD61FC0048C0E0 /* NotificationListener.swift */; };
@@ -50,6 +53,9 @@
 		01616ABAC36F1BDFC6ADCC84 /* Pods_kebabPosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kebabPosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09657E3424961DBDD9BFDF30 /* Pods-kebabPosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kebabPosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-kebabPosUITests/Pods-kebabPosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		22294E2E3042B919905BFC30 /* Pods-kebabPos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kebabPos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kebabPos/Pods-kebabPos.debug.xcconfig"; sourceTree = "<group>"; };
+		290EBBAF20C6D92F00D98C3A /* MainViewController+PrintStatusActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+PrintStatusActions.swift"; sourceTree = "<group>"; };
+		290EBBB120C6DFEC00D98C3A /* SPIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPIExtensions.swift; sourceTree = "<group>"; };
+		290EBBB320C6E43300D98C3A /* Date+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
 		29534F5020BC43320048C0E0 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		29534F5220BC48BF0048C0E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29534F5420BD61FC0048C0E0 /* NotificationListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListener.swift; sourceTree = "<group>"; };
@@ -114,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				29534F5020BC43320048C0E0 /* UIViewController+Alert.swift */,
+				290EBBB120C6DFEC00D98C3A /* SPIExtensions.swift */,
+				290EBBB320C6E43300D98C3A /* Date+String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -158,6 +166,7 @@
 				298DCCF920BAEE610081940A /* MainViewController.swift */,
 				29534F5720BD8CE30048C0E0 /* MainViewController+Actions.swift */,
 				2998F79E20C41EAA00431BE1 /* MainViewController+TransactionFlowChange.swift */,
+				290EBBAF20C6D92F00D98C3A /* MainViewController+PrintStatusActions.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -495,14 +504,17 @@
 				298DCD0120BAF20D0081940A /* KebabApp.swift in Sources */,
 				29534F5820BD8CE30048C0E0 /* MainViewController+Actions.swift in Sources */,
 				298DCD0620BAFDD20081940A /* AppEvents.swift in Sources */,
+				290EBBB220C6DFEC00D98C3A /* SPIExtensions.swift in Sources */,
 				298DCCF820BAEE4B0081940A /* TransactionRecoveryViewController.swift in Sources */,
 				298DCCFF20BAF1040081940A /* SettingsProvider.swift in Sources */,
 				298DCCF620BAED630081940A /* ConnectionViewController.swift in Sources */,
+				290EBBB420C6E43300D98C3A /* Date+String.swift in Sources */,
 				29534F5120BC43320048C0E0 /* UIViewController+Alert.swift in Sources */,
 				298DCCFA20BAEE610081940A /* MainViewController.swift in Sources */,
 				298DCD0320BAFBD10081940A /* KebabApp+SPIConnectionDelegate.swift in Sources */,
 				29534F5520BD61FC0048C0E0 /* NotificationListener.swift in Sources */,
 				29534F5320BC48BF0048C0E0 /* AppDelegate.swift in Sources */,
+				290EBBB020C6D92F00D98C3A /* MainViewController+PrintStatusActions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

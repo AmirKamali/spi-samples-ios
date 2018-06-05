@@ -9,71 +9,99 @@
 import Foundation
 import SPIClient_iOS
 extension MainViewController{
-    func transactionFlowChanged(state:SPIState)  {
-        
-        SPILogMsg("showConnectedTx")
-        
-        guard let txFlowState = state.txFlowState else {
-            showError("Missing txFlowState \(state)")
-            return
-        }
-        let alertVC = UIAlertController(title: "Title", message: txFlowState.displayMessage, preferredStyle: .alert)
-        
-        if (txFlowState.successState == .failed) {
-            SPILogMsg("# [ok] - acknowledge fail")
-            alertVC.title = "Purchase failed"
-            alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { alert in
-                self.acknowledge()
-            }))
-            
-        } else {
-            
-            if txFlowState.isAwaitingSignatureCheck {
-                SPILogMsg("# [tx_sign_accept] - Accept Signature")
-                SPILogMsg("# [tx_sign_decline] - Decline Signature")
-                
-                alertVC.addAction(UIAlertAction(title: "Accept Signature", style: .default, handler: { action in
-                    KebabApp.current.client.acceptSignature(true)
-                }))
-                
-                alertVC.addAction(UIAlertAction(title: "Decline Signature", style: .default, handler: { action in
-                    KebabApp.current.client.acceptSignature(false)
-                }))
-            }
-            
-            if !txFlowState.isFinished {
-                SPILogMsg("# [tx_cancel] - Attempt to Cancel Transaction")
-                
-                if !state.txFlowState.isAttemptingToCancel {
-                    alertVC.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
-                        KebabApp.current.client.cancelTransaction()
-                    }))
-                }
-                
-            } else {
-                SPILogMsg("# [ok] - acknowledge transaction success")
-                
-                alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                    self.acknowledge()
-                }))
-            }
-        }
-        DispatchQueue.main.async {
-            self.showAlert(alertController: alertVC)
-        }
-        
-    }
-    func acknowledge() {
-        SPILogMsg("acknowledge")
-        
-        KebabApp.current.client.ackFlowEndedAndBack { [weak self] alreadyMovedToIdleState, state in
-            guard let `self` = self else { return }
-            //self.printStatusAndAction(KebabApp.current.client.state)
-        }
-    }
     func showError(_ msg: String, completion: (() -> Swift.Void)? = nil) {
-        SPILogMsg("ERROR: \(msg)")
+        SPILogMsg("\r\nERROR: \(msg)")
         showAlert(title:"ERROR!", message: msg)
         
     }
+    func getFlowString(flow:SPIFlow)->String{
+        switch flow {
+        case .idle:
+           return "Idle"
+        case .pairing:
+           return "Pairing"
+        case .transaction:
+           return "Transaction"
+        }
+    }
+    func updateFlowInfo(state:SPIState){
+        lblStatus.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        lblStatus.textColor = UIColor.darkGray
+        
+        btnConnection.title = "Pair"
+        switch state.status {
+        case .pairedConnected:
+            lblStatus.text = "Connected"
+            lblStatus.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightSemibold)
+            lblStatus.textColor = UIColor(red: 23.0/256, green: 156.0/255, blue: 63.0/255, alpha: 1.0)
+            btnConnection.title = "Connection"
+        case .pairedConnecting:
+            lblStatus.text = "Connecting"
+            break
+        case .unpaired:
+            lblStatus.text = "Not Connected"
+            break
+        }
+        lblPosId.text = KebabApp.current.settings.posId
+        lblPosAddress.text = KebabApp.current.settings.eftPosAddress
+        lbl_flowStatus.text = getFlowString(flow: state.flow)
+        self.title = lblStatus.text
+    }
+    func stateChanged(state:SPIState){
+        updateFlowInfo(state: state)
+    }
+   
+//    ///Console.WriteLine("# ----------- AVAILABLE ACTIONS ------------");
+//
+//    if (_spi.CurrentFlow == SpiFlow.Idle)
+//    {
+//    Console.WriteLine("# [pizza:funghi] - charge for a pizza!");
+//    Console.WriteLine("# [yuck] - hand out a refund!");
+//    Console.WriteLine("# [settle] - Initiate Settlement");
+//    }
+//
+//    if (_spi.CurrentStatus == SpiStatus.Unpaired && _spi.CurrentFlow == SpiFlow.Idle)
+//    {
+//    Console.WriteLine("# [pos_id:CITYPIZZA1] - Set the POS ID");
+//    Console.WriteLine("# [eftpos_address:10.161.104.104] - Set the EFTPOS ADDRESS");
+//    }
+//
+//    if (_spi.CurrentStatus == SpiStatus.Unpaired && _spi.CurrentFlow == SpiFlow.Idle)
+//    Console.WriteLine("# [pair] - Pair with Eftpos");
+//
+//    if (_spi.CurrentStatus != SpiStatus.Unpaired && _spi.CurrentFlow == SpiFlow.Idle)
+//    Console.WriteLine("# [unpair] - Unpair and Disconnect");
+//
+//    if (_spi.CurrentFlow == SpiFlow.Pairing)
+//    {
+//    Console.WriteLine("# [pair_cancel] - Cancel Pairing");
+//
+//    if (_spi.CurrentPairingFlowState.AwaitingCheckFromPos)
+//    Console.WriteLine("# [pair_confirm] - Confirm Pairing Code");
+//
+//    if (_spi.CurrentPairingFlowState.Finished)
+//    Console.WriteLine("# [ok] - acknowledge final");
+//    }
+//
+//    if (_spi.CurrentFlow == SpiFlow.Transaction)
+//    {
+//    var txState = _spi.CurrentTxFlowState;
+//
+//    if (txState.AwaitingSignatureCheck)
+//    {
+//    Console.WriteLine("# [tx_sign_accept] - Accept Signature");
+//    Console.WriteLine("# [tx_sign_decline] - Decline Signature");
+//    }
+//
+//    if (!txState.Finished && !txState.AttemptingToCancel)
+//    Console.WriteLine("# [tx_cancel] - Attempt to Cancel Tx");
+//
+//    if (txState.Finished)
+//    Console.WriteLine("# [ok] - acknowledge final");
+//    }
+//
+//    Console.WriteLine("# [status] - reprint buttons/status");
+//    Console.WriteLine("# [bye] - exit");
+//    Console.WriteLine();
+   
 }
