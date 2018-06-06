@@ -11,21 +11,22 @@ import SPIClient_iOS
 
 extension MainViewController{
     func logMessage(_ message:String){
-        
+        txtOutput.text = message + "\r\n" + txtOutput.text
+        print(message)
     }
     func printFlowInfo(state:SPIState){
         if (state.flow == .pairing)
         {
-            guard var pairingState = state.pairingFlowState else {
+            guard let pairingState = state.pairingFlowState else {
                 return
             }
             logMessage("### PAIRING PROCESS UPDATE ###");
             logMessage(String(format:"# %@",pairingState.message));
-            logMessage(String(format:"# Finished? %@",pairingState.isFinished));
-            logMessage(String(format:"# Successful? %@",pairingState.isSuccessful));
+            logMessage(String(format:"# Finished? %@",pairingState.isFinished.toString()));
+            logMessage(String(format:"# Successful? %@",pairingState.isSuccessful.toString()));
             logMessage(String(format:"# Confirmation Code: %@",pairingState.confirmationCode));
-            logMessage(String(format:"# Waiting Confirm from Eftpos? %@",pairingState.isAwaitingCheckFromEftpos));
-            logMessage(String(format:"# Waiting Confirm from POS? %@",pairingState.isAwaitingCheckFromPos));
+            logMessage(String(format:"# Waiting Confirm from Eftpos? %@",pairingState.isAwaitingCheckFromEftpos.toString()));
+            logMessage(String(format:"# Waiting Confirm from POS? %@",pairingState.isAwaitingCheckFromPos.toString()));
         }
         
         if (state.flow == .transaction)
@@ -34,13 +35,13 @@ extension MainViewController{
                 return
             }
             logMessage("### TX PROCESS UPDATE ###");
-            logMessage(String(format:"# {txState.DisplayMessage}"));
-            logMessage(String(format:"# Id: {txState.Id}"));
-            logMessage(String(format:"# Type: {txState.Type}"));
-            logMessage(String(format:"# Amount: ${txState.AmountCents / 100.0}"));
-            logMessage(String(format:"# Waiting For Signature: %@",txState.isAwaitingSignatureCheck));
-            logMessage(String(format:"# Attempting to Cancel : %@",txState.isAttemptingToCancel));
-            logMessage(String(format:"# Finished: %@",txState.isFinished));
+            logMessage(String(format:"# %@",txState.displayMessage));
+            logMessage(String(format:"# Id: %@",txState.tid));
+            logMessage(String(format:"# Type: %@",txState.type.name));
+            logMessage(String(format:"# Amount: %.2f", Float(txState.amountCents) / 100.0));
+            logMessage(String(format:"# Waiting For Signature: %@",txState.isAwaitingSignatureCheck.toString()));
+            logMessage(String(format:"# Attempting to Cancel : %@",txState.isAttemptingToCancel.toString()));
+            logMessage(String(format:"# Finished: %@",txState.isFinished.toString()));
             logMessage(String(format:"# Success: %@",txState.successState.name));
         
             if (txState.isFinished)

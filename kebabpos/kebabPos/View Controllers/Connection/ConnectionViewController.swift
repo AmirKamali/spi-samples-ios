@@ -269,16 +269,16 @@ class ConnectionViewController: UITableViewController,NotificationListener {
                     } else {
                         // We did not even get a response, like in the case of a time-out.
                     }
-//                case .cashoutOnly:
-//                    break
-//                case .MOTO:
-//                    break
-//                case .settleEnquiry:
-//                    break
-//                case .preAuth:
-//                    break
-//                case .accountVerify:
-//                    break
+                case .cashoutOnly:
+                    break
+                case .MOTO:
+                    break
+                case .settleEnquiry:
+                    break
+                case .preAuth:
+                    break
+                case .accountVerify:
+                    break
                 }
             }
         }

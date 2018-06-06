@@ -24,3 +24,11 @@ extension Date{
     }
 
 }
+extension Bool{
+    func toString()->String{
+        if (self){
+            return "true"
+        }
+        return "false"
+    }
+}

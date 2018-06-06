@@ -58,7 +58,7 @@ class MainViewController: UITableViewController,NotificationListener {
                 return
             }
             DispatchQueue.main.async {
-           //     self.transactionFlowChanged(state: state)
+                self.stateChanged(state: state)
             }
         default:
             break

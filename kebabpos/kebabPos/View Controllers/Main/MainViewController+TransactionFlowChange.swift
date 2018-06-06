@@ -14,17 +14,7 @@ extension MainViewController{
         showAlert(title:"ERROR!", message: msg)
         
     }
-    func getFlowString(flow:SPIFlow)->String{
-        switch flow {
-        case .idle:
-           return "Idle"
-        case .pairing:
-           return "Pairing"
-        case .transaction:
-           return "Transaction"
-        }
-    }
-    func updateFlowInfo(state:SPIState){
+    func updateUIFlowInfo(state:SPIState){
         lblStatus.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         lblStatus.textColor = UIColor.darkGray
         
@@ -44,64 +34,84 @@ extension MainViewController{
         }
         lblPosId.text = KebabApp.current.settings.posId
         lblPosAddress.text = KebabApp.current.settings.eftPosAddress
-        lbl_flowStatus.text = getFlowString(flow: state.flow)
+        lbl_flowStatus.text = state.flow.name
         self.title = lblStatus.text
     }
-    func stateChanged(state:SPIState){
-        updateFlowInfo(state: state)
+    func stateChanged(state:SPIState? = nil){
+        guard let state = state ?? KebabApp.current.client.state else {
+            return
+        }
+        updateUIFlowInfo(state: state)
+        printFlowInfo(state: state)
+        selectActions(state: state)
     }
-   
-//    ///Console.WriteLine("# ----------- AVAILABLE ACTIONS ------------");
-//
-//    if (_spi.CurrentFlow == SpiFlow.Idle)
-//    {
-//    Console.WriteLine("# [pizza:funghi] - charge for a pizza!");
-//    Console.WriteLine("# [yuck] - hand out a refund!");
-//    Console.WriteLine("# [settle] - Initiate Settlement");
-//    }
-//
-//    if (_spi.CurrentStatus == SpiStatus.Unpaired && _spi.CurrentFlow == SpiFlow.Idle)
-//    {
-//    Console.WriteLine("# [pos_id:CITYPIZZA1] - Set the POS ID");
-//    Console.WriteLine("# [eftpos_address:10.161.104.104] - Set the EFTPOS ADDRESS");
-//    }
-//
-//    if (_spi.CurrentStatus == SpiStatus.Unpaired && _spi.CurrentFlow == SpiFlow.Idle)
-//    Console.WriteLine("# [pair] - Pair with Eftpos");
-//
-//    if (_spi.CurrentStatus != SpiStatus.Unpaired && _spi.CurrentFlow == SpiFlow.Idle)
-//    Console.WriteLine("# [unpair] - Unpair and Disconnect");
-//
-//    if (_spi.CurrentFlow == SpiFlow.Pairing)
-//    {
-//    Console.WriteLine("# [pair_cancel] - Cancel Pairing");
-//
-//    if (_spi.CurrentPairingFlowState.AwaitingCheckFromPos)
-//    Console.WriteLine("# [pair_confirm] - Confirm Pairing Code");
-//
-//    if (_spi.CurrentPairingFlowState.Finished)
-//    Console.WriteLine("# [ok] - acknowledge final");
-//    }
-//
-//    if (_spi.CurrentFlow == SpiFlow.Transaction)
-//    {
-//    var txState = _spi.CurrentTxFlowState;
-//
-//    if (txState.AwaitingSignatureCheck)
-//    {
-//    Console.WriteLine("# [tx_sign_accept] - Accept Signature");
-//    Console.WriteLine("# [tx_sign_decline] - Decline Signature");
-//    }
-//
-//    if (!txState.Finished && !txState.AttemptingToCancel)
-//    Console.WriteLine("# [tx_cancel] - Attempt to Cancel Tx");
-//
-//    if (txState.Finished)
-//    Console.WriteLine("# [ok] - acknowledge final");
-//    }
-//
-//    Console.WriteLine("# [status] - reprint buttons/status");
-//    Console.WriteLine("# [bye] - exit");
-//    Console.WriteLine();
-   
+    func selectActions(state:SPIState){
+        if (state.flow == .idle)
+        {
+            //    logMessage("# [pizza:funghi] - charge for a pizza!");
+            //    logMessage("# [yuck] - hand out a refund!");
+            //    logMessage("# [settle] - Initiate Settlement");
+        }
+        if (state.status == .unpaired && state.flow == .idle)
+        {
+            //    logMessage("# [pos_id:CITYPIZZA1] - Set the POS ID");
+            //    logMessage("# [eftpos_address:10.161.104.104] - Set the EFTPOS ADDRESS");
+        }
+        if (state.status == .unpaired && state.flow == .idle){
+            logMessage("# [pair] - Pair with Eftpos");
+        }
+        if (state.status != .unpaired && state.flow == .idle){
+            logMessage("# [unpair] - Unpair and Disconnect");
+        }
+        
+        if (state.flow == .pairing)
+        {
+            logMessage("# [pair_cancel] - Cancel Pairing");
+            
+            if (state.pairingFlowState.isAwaitingCheckFromPos){
+                logMessage("# [pair_confirm] - Confirm Pairing Code");
+            }
+            
+            if (state.pairingFlowState.isFinished){
+                logMessage("# [ok] - acknowledge final");
+                ok()
+            }
+        }
+        
+        if (state.flow == .transaction)
+        {
+            guard let txState = state.txFlowState else {
+                return
+            }
+            
+            if (txState.isAwaitingSignatureCheck)
+            {
+                logMessage("# [tx_sign_accept] - Accept Signature");
+                logMessage("# [tx_sign_decline] - Decline Signature");
+            }
+            if (!txState.isFinished && !txState.isAttemptingToCancel){
+                logMessage("# [tx_cancel] - Attempt to Cancel Tx");
+              //  tx_cancel()
+                
+            }
+            
+            if (txState.isFinished){
+                logMessage("# [ok] - acknowledge final");
+                ok()
+            }
+            
+        }
+    }
+    func ok(){
+        client.ackFlowEndedAndBack { (finished, state) in
+            DispatchQueue.main.async {
+                self.stateChanged(state: state);
+            }
+            
+        }
+        
+    }
+    func tx_cancel(){
+        client.cancelTransaction()
+    }
 }

@@ -20,3 +20,39 @@ extension SPIMessageSuccessState{
         }
     }
 }
+extension SPIFlow{
+    var name:String{
+        switch self {
+        case .idle:
+            return "Idle"
+        case .pairing:
+            return "Pairing"
+        case .transaction:
+            return "Transaction"
+        }
+    }
+}
+extension SPITransactionType{
+    var name:String{
+        switch self {
+        case .getLastTransaction:
+            return "Get Last Transaction"
+        case .purchase:
+            return "Purchase"
+        case .refund:
+            return "Refund"
+        case .settle:
+            return "Settle"
+        case .cashoutOnly:
+            return "Cashout Only"
+        case .MOTO:
+            return "MOTO"
+        case .settleEnquiry:
+            return "Settle Enquiry"
+        case .preAuth:
+            return "Pre Auth"
+        case .accountVerify:
+            return "Account Verify"
+        }
+    }
+}
