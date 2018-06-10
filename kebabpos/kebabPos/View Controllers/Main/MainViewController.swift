@@ -19,16 +19,21 @@ class MainViewController: UITableViewController,NotificationListener {
     @IBOutlet weak var btnConnection: UIBarButtonItem!
     @IBOutlet weak var txtTransactionAmount: UITextField!
     @IBOutlet weak var txtExtraAmount: UITextField!
+    @IBOutlet weak var txtReferenceId: UITextField!
     @IBOutlet weak var txtOutput: UITextView!
     @IBOutlet weak var segmentExtraAmount: UISegmentedControl!
     
+    var newRefrenceId:String {
+        let randomName = "localRef1"//\(arc4random()%999999)"
+        return randomName
+    }
     let indexPath_extraAmount = IndexPath(row: 2, section: 3)
     let _lastCmd:[String] = []
 
     @IBOutlet weak var lbl_flowStatus: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        txtReferenceId.text = newRefrenceId
         registerForEvents(appEvents: [.connectionStatusChanged,.transactionFlowStateChanged])
     }
     

@@ -94,6 +94,7 @@ extension MainViewController{
             }
             
             if (client.state.txFlowState.isFinished){
+                ok()
               //  Console.WriteLine("# [ok] - acknowledge final");
             }
         }

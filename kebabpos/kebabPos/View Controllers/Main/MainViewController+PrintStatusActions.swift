@@ -17,27 +17,29 @@ extension MainViewController{
     func printFlowInfo(state:SPIState){
         switch state.flow {
         case .pairing:
-            let pairingState = state.pairingFlowState;
+            guard let pairingState = state.pairingFlowState else {
+                return
+            }
             logMessage("### PAIRING PROCESS UPDATE ###");
-            logMessage(String(format:"# {pairingState.Message}"));
-            logMessage(String(format:"# Finished? {pairingState.Finished}"));
-            logMessage(String(format:"# Successful? {pairingState.Successful}"));
-            logMessage(String(format:"# Confirmation Code: {pairingState.ConfirmationCode}"));
-            logMessage(String(format:"# Waiting Confirm from Eftpos? {pairingState.AwaitingCheckFromEftpos}"));
-            logMessage(String(format:"# Waiting Confirm from POS? {pairingState.AwaitingCheckFromPos}"));
+            logMessage(String(format:"# %@",pairingState.message));
+            logMessage(String(format:"# Finished? %@",pairingState.isFinished));
+            logMessage(String(format:"# Successful? %@", pairingState.isSuccessful));
+            logMessage(String(format:"# Confirmation Code: %@",pairingState.confirmationCode));
+            logMessage(String(format:"# Waiting Confirm from Eftpos? %@",pairingState.isAwaitingCheckFromEftpos));
+            logMessage(String(format:"# Waiting Confirm from POS? %@",pairingState.isAwaitingCheckFromPos));
         case .transaction:
             guard let txState = state.txFlowState else {
                 return
             }
             logMessage("### TX PROCESS UPDATE ###");
-            logMessage(String(format:"# {txState.DisplayMessage}"));
-            logMessage(String(format:"# Id: {txState.PosRefId}"));
-            logMessage(String(format:"# Type: {txState.Type}"));
-            logMessage(String(format:"# Amount: ${txState.AmountCents / 100.0}"));
-            logMessage(String(format:"# Waiting For Signature: {txState.AwaitingSignatureCheck}"));
-            logMessage(String(format:"# Attempting to Cancel : {txState.AttemptingToCancel}"));
-            logMessage(String(format:"# Finished: {txState.Finished}"));
-            logMessage(String(format:"# Success: {txState.Success}"));
+            logMessage(String(format:"# %@",txState.displayMessage));
+            logMessage(String(format:"# Id: %@", txState.posRefId));
+            logMessage(String(format:"# Type: %@", txState.type.name));
+            logMessage(String(format:"# Amount: %.2f",Float(txState.amountCents) / 100.0));
+            logMessage(String(format:"# Waiting For Signature: %@",txState.isAwaitingSignatureCheck));
+            logMessage(String(format:"# Attempting to Cancel : %@",txState.isAttemptingToCancel));
+            logMessage(String(format:"# Finished: %@",NSNumber(booleanLiteral: txState.isFinished)));
+            logMessage(String(format:"# Success: %@",txState.successState.name));
             
             if (txState.isAwaitingSignatureCheck)
             {
@@ -98,28 +100,28 @@ extension MainViewController{
         case .success:
             logMessage(String(format:"# WOOHOO - WE GOT PAID!"));
             purchaseResponse = SPIPurchaseResponse(message: txState.response);
-            logMessage(String(format:"# Response: {0}", purchaseResponse.getText()));
-            logMessage(String(format:"# RRN: {0}", purchaseResponse.getRRN()));
-            logMessage(String(format:"# Scheme: {0}", purchaseResponse.schemeName));
+            logMessage(String(format:"# Response: %@", purchaseResponse.getText()));
+            logMessage(String(format:"# RRN: %@", purchaseResponse.getRRN()));
+            logMessage(String(format:"# Scheme: %@", purchaseResponse.schemeName));
             logMessage(String(format:"# Customer Receipt:"));
             logMessage((!purchaseResponse.wasCustomerReceiptPrinted()) ? purchaseResponse.getCustomerReceipt() : "# PRINTED FROM EFTPOS");
-            logMessage(String(format:"# PURCHASE: {0}", purchaseResponse.getPurchaseAmount()));
-            logMessage(String(format:"# TIP: {0}", purchaseResponse.getTipAmount()));
-            logMessage(String(format:"# CASHOUT: {0}", purchaseResponse.getCashoutAmount()));
-            logMessage(String(format:"# BANKED NON-CASH AMOUNT: {0}", purchaseResponse.getBankNonCashAmount()));
-            logMessage(String(format:"# BANKED CASH AMOUNT: {0}", purchaseResponse.getBankCashAmount()));
+            logMessage(String(format:"# PURCHASE: %@", purchaseResponse.getPurchaseAmount()));
+            logMessage(String(format:"# TIP: %@", purchaseResponse.getTipAmount()));
+            logMessage(String(format:"# CASHOUT: %@", purchaseResponse.getCashoutAmount()));
+            logMessage(String(format:"# BANKED NON-CASH AMOUNT: %@", purchaseResponse.getBankNonCashAmount()));
+            logMessage(String(format:"# BANKED CASH AMOUNT: %@", purchaseResponse.getBankCashAmount()));
             //
         //    break;
         case .failed:
             logMessage(String(format:"# WE DID NOT GET PAID :("));
-            logMessage(String(format:"# Error: {0}", txState.response.error));
-            logMessage(String(format:"# Error Detail: {0}", txState.response.errorDetail));
+            logMessage(String(format:"# Error: %@", txState.response.error));
+            logMessage(String(format:"# Error Detail: %@", txState.response.errorDetail));
             if (txState.response != nil)
             {
                 purchaseResponse = SPIPurchaseResponse(message: txState.response);
-                logMessage(String(format:"# Response: {0}", purchaseResponse.getText()));
-                logMessage(String(format:"# RRN: {0}", purchaseResponse.getRRN()));
-                logMessage(String(format:"# Scheme: {0}", purchaseResponse.schemeName));
+                logMessage(String(format:"# Response: %@", purchaseResponse.getText()));
+                logMessage(String(format:"# RRN: %@", purchaseResponse.getRRN()));
+                logMessage(String(format:"# Scheme: %@", purchaseResponse.schemeName));
                 logMessage(String(format:"# Customer Receipt:"));
                 logMessage(!purchaseResponse.wasCustomerReceiptPrinted()
                     ? purchaseResponse.getCustomerReceipt(): "# PRINTED FROM EFTPOS");
@@ -142,23 +144,23 @@ extension MainViewController{
         case .success:
             logMessage(String(format:"# REFUND GIVEN- OH WELL!"));
             refundResponse = SPIRefundResponse(message: txState.response)
-            logMessage(String(format:"# Response: {0}", refundResponse.getText()));
-            logMessage(String(format:"# RRN: {0}", refundResponse.getRRN()));
-            logMessage(String(format:"# Scheme: {0}", refundResponse.schemeName));
+            logMessage(String(format:"# Response: %@", refundResponse.getText()));
+            logMessage(String(format:"# RRN: %@", refundResponse.getRRN()));
+            logMessage(String(format:"# Scheme: %@", refundResponse.schemeName));
             logMessage(String(format:"# Customer Receipt:"));
             logMessage((!refundResponse.wasCustomerReceiptPrinted()) ? refundResponse.getCustomerReceipt() : "# PRINTED FROM EFTPOS");
-            logMessage(String(format:"# REFUNDED AMOUNT: {0}", refundResponse.getRefundAmount()));
+            logMessage(String(format:"# REFUNDED AMOUNT: %@", refundResponse.getRefundAmount()));
             break;
         case .failed:
             logMessage(String(format:"# REFUND FAILED!"));
-            logMessage(String(format:"# Error: {0}", txState.response.error));
-            logMessage(String(format:"# Error Detail: {0}", txState.response.errorDetail));
+            logMessage(String(format:"# Error: %@", txState.response.error));
+            logMessage(String(format:"# Error Detail: %@", txState.response.errorDetail));
             if (txState.response != nil)
             {
                 refundResponse = SPIRefundResponse(message:txState.response)
-                logMessage(String(format:"# Response: {0}", refundResponse.getText()))
-                logMessage(String(format:"# RRN: {0}", refundResponse.getRRN()))
-                logMessage(String(format:"# Scheme: {0}", refundResponse.schemeName))
+                logMessage(String(format:"# Response: %@", refundResponse.getText()))
+                logMessage(String(format:"# RRN: %@", refundResponse.getRRN()))
+                logMessage(String(format:"# Scheme: %@", refundResponse.schemeName))
                 logMessage(String(format:"# Customer Receipt:"))
                 logMessage(!refundResponse.wasCustomerReceiptPrinted() ? refundResponse.getCustomerReceipt() : "# PRINTED FROM EFTPOS")
             }
@@ -180,25 +182,25 @@ extension MainViewController{
         case .success:
             logMessage(String(format:"# CASH-OUT SUCCESSFUL - HAND THEM THE CASH!"))
             cashoutResponse = SPICashoutOnlyResponse(message:txState.response)
-            logMessage(String(format:"# Response: {0}", cashoutResponse.getText()))
-            logMessage(String(format:"# RRN: {0}", cashoutResponse.getRRN()))
-            logMessage(String(format:"# Scheme: {0}", cashoutResponse.schemeName))
+            logMessage(String(format:"# Response: %@", cashoutResponse.getText()))
+            logMessage(String(format:"# RRN: %@", cashoutResponse.getRRN()))
+            logMessage(String(format:"# Scheme: %@", cashoutResponse.schemeName))
             logMessage(String(format:"# Customer Receipt:"))
             logMessage(((!cashoutResponse.wasCustomerReceiptPrinted()) ? cashoutResponse.getCustomerReceipt() : "# PRINTED FROM EFTPOS"))
-            logMessage(String(format:"# CASHOUT: {0}", cashoutResponse.getCashoutAmount()))
-            logMessage(String(format:"# BANKED NON-CASH AMOUNT: {0}", cashoutResponse.getBankNonCashAmount()))
-            logMessage(String(format:"# BANKED CASH AMOUNT: {0}", cashoutResponse.getBankCashAmount()))
+            logMessage(String(format:"# CASHOUT: %@", cashoutResponse.getCashoutAmount()))
+            logMessage(String(format:"# BANKED NON-CASH AMOUNT: %@", cashoutResponse.getBankNonCashAmount()))
+            logMessage(String(format:"# BANKED CASH AMOUNT: %@", cashoutResponse.getBankCashAmount()))
             break;
         case .failed:
             logMessage(String(format:"# CASHOUT FAILED!"))
-            logMessage(String(format:"# Error: {0}", txState.response.error))
-            logMessage(String(format:"# Error Detail: {0}", txState.response.errorDetail))
+            logMessage(String(format:"# Error: %@", txState.response.error))
+            logMessage(String(format:"# Error Detail: %@", txState.response.errorDetail))
             if (txState.response != nil)
             {
                 cashoutResponse = SPICashoutOnlyResponse(message: txState.response)
-                logMessage(String(format:"# Response: {0}", cashoutResponse.getText()))
-                logMessage(String(format:"# RRN: {0}", cashoutResponse.getRRN()))
-                logMessage(String(format:"# Scheme: {0}", cashoutResponse.schemeName))
+                logMessage(String(format:"# Response: %@", cashoutResponse.getText()))
+                logMessage(String(format:"# RRN: %@", cashoutResponse.getRRN()))
+                logMessage(String(format:"# Scheme: %@", cashoutResponse.schemeName))
                 logMessage(String(format:"# Customer Receipt:"))
                 logMessage(cashoutResponse.getCustomerReceipt())
             }
@@ -221,27 +223,27 @@ extension MainViewController{
             logMessage(String(format:"# WOOHOO - WE GOT MOTO-PAID!"))
             motoResponse = SPIMotoPurchaseResponse(message: txState.response)
             purchaseResponse = motoResponse.purchaseResponse;
-            logMessage(String(format:"# Response: {0}", purchaseResponse.getText()))
-            logMessage(String(format:"# RRN: {0}", purchaseResponse.getRRN()))
-            logMessage(String(format:"# Scheme: {0}", purchaseResponse.schemeName))
-            logMessage(String(format:"# Card Entry: {0}", purchaseResponse.getCardEntry()))
+            logMessage(String(format:"# Response: %@", purchaseResponse.getText()))
+            logMessage(String(format:"# RRN: %@", purchaseResponse.getRRN()))
+            logMessage(String(format:"# Scheme: %@", purchaseResponse.schemeName))
+            logMessage(String(format:"# Card Entry: %@", purchaseResponse.getCardEntry()))
             logMessage(String(format:"# Customer Receipt:"))
             logMessage((!purchaseResponse.wasCustomerReceiptPrinted() ? purchaseResponse.getCustomerReceipt() : "# PRINTED FROM EFTPOS"))
-            logMessage(String(format:"# PURCHASE: {0}", purchaseResponse.getPurchaseAmount()))
-            logMessage(String(format:"# BANKED NON-CASH AMOUNT: {0}", purchaseResponse.getBankNonCashAmount()))
-            logMessage(String(format:"# BANKED CASH AMOUNT: {0}", purchaseResponse.getBankCashAmount()))
+            logMessage(String(format:"# PURCHASE: %@", purchaseResponse.getPurchaseAmount()))
+            logMessage(String(format:"# BANKED NON-CASH AMOUNT: %@", purchaseResponse.getBankNonCashAmount()))
+            logMessage(String(format:"# BANKED CASH AMOUNT: %@", purchaseResponse.getBankCashAmount()))
             break;
         case .failed:
             logMessage(String(format:"# WE DID NOT GET MOTO-PAID :("))
-            logMessage(String(format:"# Error: {0}", txState.response.error))
-            logMessage(String(format:"# Error Detail: {0}", txState.response.errorDetail))
+            logMessage(String(format:"# Error: %@", txState.response.error))
+            logMessage(String(format:"# Error Detail: %@", txState.response.errorDetail))
             if (txState.response != nil)
             {
                 motoResponse = SPIMotoPurchaseResponse(message: txState.response)
                 purchaseResponse = motoResponse.purchaseResponse;
-                logMessage(String(format:"# Response: {0}", purchaseResponse.getText()))
-                logMessage(String(format:"# RRN: {0}", purchaseResponse.getRRN()))
-                logMessage(String(format:"# Scheme: {0}", purchaseResponse.schemeName))
+                logMessage(String(format:"# Response: %@", purchaseResponse.getText()))
+                logMessage(String(format:"# RRN: %@", purchaseResponse.getRRN()))
+                logMessage(String(format:"# Scheme: %@", purchaseResponse.schemeName))
                 logMessage(String(format:"# Customer Receipt:"))
                 logMessage(purchaseResponse.getCustomerReceipt())
             }
@@ -273,10 +275,10 @@ extension MainViewController{
             }
             
             if let purchaseResponse = SPIPurchaseResponse(message:txState.response){
-                logMessage(String(format:"# Scheme: {0}", purchaseResponse.schemeName))
-                logMessage(String(format:"# Response: {0}", purchaseResponse.getText()))
-                logMessage(String(format:"# RRN: {0}", purchaseResponse.getRRN()))
-                logMessage(String(format:"# Error: {0}", txState.response.error))
+                logMessage(String(format:"# Scheme: %@", purchaseResponse.schemeName))
+                logMessage(String(format:"# Response: %@", purchaseResponse.getText()))
+                logMessage(String(format:"# RRN: %@", purchaseResponse.getRRN()))
+                logMessage(String(format:"# Error: %@", txState.response.error))
                 logMessage(String(format:"# Customer Receipt:"))
                 logMessage(purchaseResponse.getCustomerReceipt())
             }
@@ -296,7 +298,7 @@ extension MainViewController{
             logMessage(String(format:"# SETTLEMENT SUCCESSFUL!"))
             if let settleResponse = SPISettlement(message:txState.response)
             {
-                logMessage(String(format:"# Response: {0}", settleResponse.getResponseText()))
+                logMessage(String(format:"# Response: %@", settleResponse.getResponseText()))
                 logMessage(String(format:"# Merchant Receipt:"))
                 logMessage(String(settleResponse.getReceipt()))
                 logMessage(String(format:"# Period Start: %@", settleResponse.getPeriodStartTime().toString()))
@@ -306,8 +308,8 @@ extension MainViewController{
                 logMessage(String(format:"# Terminal Id: %i" , settleResponse.getTerminalId()))
                 logMessage(String(format:"# Total TX Count: %i" , settleResponse.getTotalCount()))
                 logMessage(String(format:"# Total TX Value: {settleResponse.getTotalValue() / 100.0}"))
-                // logMessage(String(format:"# By Aquirer TX Count: " + settleResponse.getSettleByAquirerCount()))
-                // logMessage(String(format:"# By Aquirer TX Value: {settleResponse.getSettleByAquirerValue() / 100.0}"))
+                logMessage(String(format:"# By Aquirer TX Count: %i" , settleResponse.getSettleByAcquirerCount()))
+                logMessage(String(format:"# By Aquirer TX Value: %.2f", Float(settleResponse.getSettleByAcquirerValue()) / 100.0))
                 logMessage(String(format:"# SCHEME SETTLEMENTS:"))
                 let schemes = settleResponse.getSchemeSettlementEntries()
                 for  s in schemes ?? []
@@ -320,8 +322,8 @@ extension MainViewController{
         case .failed:
             logMessage(String(format:"# SETTLEMENT FAILED!"))
             if let settleResponse =  SPISettlement(message: txState.response) {
-                logMessage(String(format:"# Response: {0}", settleResponse.getResponseText()))
-                logMessage(String(format:"# Error: {0}", txState.response.error))
+                logMessage(String(format:"# Response: %@", settleResponse.getResponseText()))
+                logMessage(String(format:"# Error: %@", txState.response.error))
                 logMessage(String(format:"# Merchant Receipt:"))
                 logMessage(settleResponse.getReceipt())
             }
@@ -339,7 +341,7 @@ extension MainViewController{
         case .success:
             logMessage(String(format:"# SETTLEMENT ENQUIRY SUCCESSFUL!"))
             if let settleResponse = SPISettlement(message:txState.response){
-                logMessage(String(format:"# Response: {0}", settleResponse.getResponseText()))
+                logMessage(String(format:"# Response: %@", settleResponse.getResponseText()))
                 logMessage(String(format:"# Merchant Receipt:"))
                 logMessage(settleResponse.getReceipt())
                 logMessage(String(format:"# Period Start: %@" , settleResponse.getPeriodStartTime().toString()))
@@ -351,7 +353,7 @@ extension MainViewController{
                 logMessage(String(format:"# Total TX Value: {settleResponse.getTotalValue() / 100.0}"))
                 logMessage(String(format:"# By Aquirer TX Count: %@" , settleResponse.getSettleByAcquirerCount()))
                 logMessage(String(format:"# By Aquirere TX Value: %.2f", Float(settleResponse.getSettleByAcquirerValue()) / 100.0))
-                //     logMessage(String(format:"# SCHEME SETTLEMENTS:"))
+                logMessage(String(format:"# SCHEME SETTLEMENTS:"))
                 let schemes = settleResponse.getSchemeSettlementEntries()
                 for s in schemes ?? []
                 {
@@ -362,8 +364,8 @@ extension MainViewController{
         case .failed:
             logMessage(String(format:"# SETTLEMENT ENQUIRY FAILED!"))
             if let settleResponse = SPISettlement(message:txState.response){
-                logMessage(String(format:"# Response: {0}", settleResponse.getResponseText()))
-                logMessage(String(format:"# Error: {0}", txState.response.error))
+                logMessage(String(format:"# Response: %@", settleResponse.getResponseText()))
+                logMessage(String(format:"# Error: %@", txState.response.error))
                 logMessage(String(format:"# Merchant Receipt:"))
                 logMessage(settleResponse.getReceipt())
             }
