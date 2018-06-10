@@ -19,8 +19,23 @@ extension MainViewController{
         guard let amount = Int(txtTransactionAmount.text ?? "") , amount > 0 else { //Amount Cents
             return
         }
+        var tipAmount = 0
+        var cashout = 0
         
-        client.initiatePurchaseTx(referenceId, amountCents: amount,completion: printResult)
+        if segmentExtraAmount.selectedSegmentIndex > 0 , let extraAmount = Int(txtExtraAmount.text ?? ""){
+            //Extra option is tip
+            if (segmentExtraAmount.selectedSegmentIndex == 1){
+                tipAmount = extraAmount
+            //Extra option is cashout
+            }else if (segmentExtraAmount.selectedSegmentIndex == 2){
+                cashout = extraAmount
+            }
+            
+        }
+        let promptCashout = false
+        
+        client.enablePayAtTable()
+        client.initiatePurchaseTxV2(referenceId, purchaseAmount: amount, tipAmount: tipAmount, cashoutAmount: cashout, promptForCashout: promptCashout, completion: printResult)
     }
     @IBAction func btnMotoClicked(_ sender: Any) {
         let referenceId = newRefrenceId //Local referenceId
@@ -46,11 +61,8 @@ extension MainViewController{
         let referenceId = newRefrenceId //Local referenceId
         client.initiateSettlementEnquiry(referenceId, completion: printResult)
     }
-    func printResult(result:SPIInitiateTxResult?){
-        DispatchQueue.main.async {
-            SPILogMsg(result?.message)
-            self.txtOutput.text =  result?.message ?? "" + self.txtOutput.text
-        }
-        
+    @IBAction func btnLastTransactionClicked(_ sender: Any) {
+        client.initiateGetLastTx(completion: printResult)
     }
+   
 }

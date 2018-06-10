@@ -9,11 +9,6 @@
 import Foundation
 import SPIClient_iOS
 extension MainViewController{
-    func showError(_ msg: String, completion: (() -> Swift.Void)? = nil) {
-        SPILogMsg("\r\nERROR: \(msg)")
-        showAlert(title:"ERROR!", message: msg)
-        
-    }
     func updateUIFlowInfo(state:SPIState){
         lblStatus.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         lblStatus.textColor = UIColor.darkGray
@@ -46,60 +41,61 @@ extension MainViewController{
         selectActions(state: state)
     }
     func selectActions(state:SPIState){
-        if (state.flow == .idle)
-        {
-            //    logMessage("# [pizza:funghi] - charge for a pizza!");
-            //    logMessage("# [yuck] - hand out a refund!");
-            //    logMessage("# [settle] - Initiate Settlement");
-        }
-        if (state.status == .unpaired && state.flow == .idle)
-        {
-            //    logMessage("# [pos_id:CITYPIZZA1] - Set the POS ID");
-            //    logMessage("# [eftpos_address:10.161.104.104] - Set the EFTPOS ADDRESS");
-        }
-        if (state.status == .unpaired && state.flow == .idle){
-            logMessage("# [pair] - Pair with Eftpos");
-        }
-        if (state.status != .unpaired && state.flow == .idle){
-            logMessage("# [unpair] - Unpair and Disconnect");
-        }
         
-        if (state.flow == .pairing)
+       // Console.WriteLine("# ----------- AVAILABLE ACTIONS ------------");
+        if client.state.flow == .idle {
+            
+        }
+        if (client.state.status == .unpaired && client.state.flow == .idle){
+            //Console.WriteLine("# [pos_id:CITYKEBAB1] - Set the POS ID");
+        }
+        if (client.state.status == .unpaired || client.state.status == .pairedConnecting){
+            //Console.WriteLine("# [eftpos_address:10.161.104.104] - Set the EFTPOS ADDRESS");
+        }
+
+        if (client.state.status == .unpaired || client.state.status == .pairedConnecting)
         {
-            logMessage("# [pair_cancel] - Cancel Pairing");
-            
-            if (state.pairingFlowState.isAwaitingCheckFromPos){
-                logMessage("# [pair_confirm] - Confirm Pairing Code");
+          //  Console.WriteLine("# [eftpos_address:10.161.104.104] - Set the EFTPOS ADDRESS");
+        }
+        if (client.state.status == .unpaired && client.state.flow == .idle){
+            //Console.WriteLine("# [pair] - Pair with Eftpos");
+        }
+        if (client.state.status != .unpaired && client.state.flow == .idle){
+            //Console.WriteLine("# [unpair] - Unpair and Disconnect");
+        }
+        if (client.state.flow == .pairing)
+        {
+            if (client.state.pairingFlowState.isAwaitingCheckFromPos){
+                client.pairingConfirmCode()
             }
-            
-            if (state.pairingFlowState.isFinished){
-                logMessage("# [ok] - acknowledge final");
+            if (!client.state.pairingFlowState.isFinished){
+                //Console.WriteLine("# [pair_cancel] - Cancel Pairing");
+            }
+            if (client.state.pairingFlowState.isFinished){
                 ok()
             }
         }
+        if client.state.flow == .transaction , let txState = client.state.txFlowState{
+            
+            if (txState.isAwaitingSignatureCheck){
+               // console.WriteLine("# [tx_sign_accept] - Accept Signature");
+               // console.WriteLine("# [tx_sign_decline] - Decline Signature");
+            }
+            if (txState.isAwaitingPhoneForAuth){
+               // Console.WriteLine("# [tx_auth_code:123456] - Submit Phone For Auth Code");
+            }
+        }
         
-        if (state.flow == .transaction)
+        if (client.state.flow == .transaction)
         {
-            guard let txState = state.txFlowState else {
-                return
+            
+            if (!client.state.txFlowState.isFinished && !client.state.txFlowState.isAttemptingToCancel){
+               // Console.WriteLine("# [tx_cancel] - Attempt to Cancel Tx");
             }
             
-            if (txState.isAwaitingSignatureCheck)
-            {
-                logMessage("# [tx_sign_accept] - Accept Signature");
-                logMessage("# [tx_sign_decline] - Decline Signature");
+            if (client.state.txFlowState.isFinished){
+              //  Console.WriteLine("# [ok] - acknowledge final");
             }
-            if (!txState.isFinished && !txState.isAttemptingToCancel){
-                logMessage("# [tx_cancel] - Attempt to Cancel Tx");
-              //  tx_cancel()
-                
-            }
-            
-            if (txState.isFinished){
-                logMessage("# [ok] - acknowledge final");
-                ok()
-            }
-            
         }
     }
     func ok(){

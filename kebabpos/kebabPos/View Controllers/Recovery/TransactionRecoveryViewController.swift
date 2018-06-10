@@ -7,32 +7,20 @@
 //
 
 import UIKit
-
+import SPIClient_iOS
 class TransactionRecoveryViewController: UITableViewController {
 
+    @IBOutlet weak var txtReferenceId: UITextField!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func btnRecoverClicked(_ sender: UIButton) {
+        if let referenceId = txtReferenceId.text{
+            return
+        }
+       // KebabApp.current.client.initiateRecovery(referenceId, transactionType: SPITransactionType.getLastTransaction, completion: )
     }
-
-    // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return super.numberOfSections(in: tableView)
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return super.tableView(tableView, numberOfRowsInSection: section)
-    }
-
 }
