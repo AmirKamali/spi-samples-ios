@@ -20,11 +20,9 @@ extension UIViewController{
             self.presentedViewController?.dismiss(animated: false, completion: {
                 display()
             })
-        }else{
-            display()
+        } else{
+                display()
         }
-       
-        
     }
     func showAlert(alertController:UIAlertController){
         func display(){

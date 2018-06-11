@@ -22,11 +22,11 @@ extension MainViewController{
             }
             logMessage("### PAIRING PROCESS UPDATE ###");
             logMessage(String(format:"# %@",pairingState.message));
-            logMessage(String(format:"# Finished? %@",pairingState.isFinished));
-            logMessage(String(format:"# Successful? %@", pairingState.isSuccessful));
+            logMessage(String(format:"# Finished? %@",NSNumber(booleanLiteral: pairingState.isFinished)));
+            logMessage(String(format:"# Successful? %@", NSNumber(booleanLiteral: pairingState.isSuccessful)));
             logMessage(String(format:"# Confirmation Code: %@",pairingState.confirmationCode));
-            logMessage(String(format:"# Waiting Confirm from Eftpos? %@",pairingState.isAwaitingCheckFromEftpos));
-            logMessage(String(format:"# Waiting Confirm from POS? %@",pairingState.isAwaitingCheckFromPos));
+            logMessage(String(format:"# Waiting Confirm from Eftpos? %@",NSNumber(booleanLiteral: pairingState.isAwaitingCheckFromEftpos)));
+            logMessage(String(format:"# Waiting Confirm from POS? %@",NSNumber(booleanLiteral: pairingState.isAwaitingCheckFromPos)));
         case .transaction:
             guard let txState = state.txFlowState else {
                 return
@@ -36,8 +36,8 @@ extension MainViewController{
             logMessage(String(format:"# Id: %@", txState.posRefId));
             logMessage(String(format:"# Type: %@", txState.type.name));
             logMessage(String(format:"# Amount: %.2f",Float(txState.amountCents) / 100.0));
-            logMessage(String(format:"# Waiting For Signature: %@",txState.isAwaitingSignatureCheck));
-            logMessage(String(format:"# Attempting to Cancel : %@",txState.isAttemptingToCancel));
+            logMessage(String(format:"# Waiting For Signature: %@",NSNumber(booleanLiteral: txState.isAwaitingSignatureCheck)));
+            logMessage(String(format:"# Attempting to Cancel : %@",NSNumber(booleanLiteral: txState.isAttemptingToCancel)));
             logMessage(String(format:"# Finished: %@",NSNumber(booleanLiteral: txState.isFinished)));
             logMessage(String(format:"# Success: %@",txState.successState.name));
             

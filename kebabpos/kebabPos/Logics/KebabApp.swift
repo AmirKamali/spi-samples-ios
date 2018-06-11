@@ -32,6 +32,9 @@ class KebabApp:NSObject{
         client.eftposAddress = eftPosAddress;
         client.posId = eftPosId;
         client.delegate = self
+        
+    }
+    func start(){
         client.start()
     }
 }

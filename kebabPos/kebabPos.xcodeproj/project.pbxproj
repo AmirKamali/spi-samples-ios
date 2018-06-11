@@ -17,7 +17,6 @@
 		29534F5520BD61FC0048C0E0 /* NotificationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29534F5420BD61FC0048C0E0 /* NotificationListener.swift */; };
 		29534F5820BD8CE30048C0E0 /* MainViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29534F5720BD8CE30048C0E0 /* MainViewController+Actions.swift */; };
 		298DCCF620BAED630081940A /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298DCCF520BAED630081940A /* ConnectionViewController.swift */; };
-		298DCCF820BAEE4B0081940A /* TransactionRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298DCCF720BAEE4B0081940A /* TransactionRecoveryViewController.swift */; };
 		298DCCFA20BAEE610081940A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298DCCF920BAEE610081940A /* MainViewController.swift */; };
 		298DCCFF20BAF1040081940A /* SettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298DCCFE20BAF1040081940A /* SettingsProvider.swift */; };
 		298DCD0120BAF20D0081940A /* KebabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298DCD0020BAF20D0081940A /* KebabApp.swift */; };
@@ -62,7 +61,6 @@
 		29534F5720BD8CE30048C0E0 /* MainViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Actions.swift"; sourceTree = "<group>"; };
 		298DCCF420BAED630081940A /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		298DCCF520BAED630081940A /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
-		298DCCF720BAEE4B0081940A /* TransactionRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRecoveryViewController.swift; sourceTree = "<group>"; };
 		298DCCF920BAEE610081940A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		298DCCFE20BAF1040081940A /* SettingsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProvider.swift; sourceTree = "<group>"; };
 		298DCD0020BAF20D0081940A /* KebabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KebabApp.swift; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				298DCCF120BAED220081940A /* Connection */,
-				298DCCF220BAED280081940A /* Recovery */,
 				298DCCF320BAED2E0081940A /* Main */,
 			);
 			path = "View Controllers";
@@ -150,14 +147,6 @@
 				298DCCF520BAED630081940A /* ConnectionViewController.swift */,
 			);
 			path = Connection;
-			sourceTree = "<group>";
-		};
-		298DCCF220BAED280081940A /* Recovery */ = {
-			isa = PBXGroup;
-			children = (
-				298DCCF720BAEE4B0081940A /* TransactionRecoveryViewController.swift */,
-			);
-			path = Recovery;
 			sourceTree = "<group>";
 		};
 		298DCCF320BAED2E0081940A /* Main */ = {
@@ -505,7 +494,6 @@
 				29534F5820BD8CE30048C0E0 /* MainViewController+Actions.swift in Sources */,
 				298DCD0620BAFDD20081940A /* AppEvents.swift in Sources */,
 				290EBBB220C6DFEC00D98C3A /* SPIExtensions.swift in Sources */,
-				298DCCF820BAEE4B0081940A /* TransactionRecoveryViewController.swift in Sources */,
 				298DCCFF20BAF1040081940A /* SettingsProvider.swift in Sources */,
 				298DCCF620BAED630081940A /* ConnectionViewController.swift in Sources */,
 				290EBBB420C6E43300D98C3A /* toString.swift in Sources */,

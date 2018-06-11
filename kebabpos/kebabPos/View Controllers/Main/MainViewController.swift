@@ -35,6 +35,7 @@ class MainViewController: UITableViewController,NotificationListener {
         super.viewDidLoad()
         txtReferenceId.text = newRefrenceId
         registerForEvents(appEvents: [.connectionStatusChanged,.transactionFlowStateChanged])
+        client.start()
     }
     
     override func didReceiveMemoryWarning() {

@@ -111,4 +111,7 @@ extension MainViewController{
     func tx_cancel(){
         client.cancelTransaction()
     }
+    func tx_auth_code(){
+        
+    }
 }
