@@ -9,24 +9,20 @@
 import UIKit
 import SPIClient_iOS
 class ConnectionViewController: UITableViewController,NotificationListener {
-    @IBOutlet weak var txt_output: UITextView!
-    @IBOutlet weak var txt_posId: UITextField!
-    @IBOutlet weak var txt_posAddress: UITextField!
-    
-    var alertVC: UIAlertController?
+    @IBOutlet weak var txtOutput: UITextView!
+    @IBOutlet weak var txtPosId: UITextField!
+    @IBOutlet weak var txtPosAddress: UITextField!
 
-   
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForEvents(appEvents: [.connectionStatusChanged,.pairingFlowChanged,.transactionFlowStateChanged])
-        txt_posId.text = KebabApp.current.settings.posId
-        txt_posAddress.text = KebabApp.current.settings.eftPosAddress
+        txtPosId.text = KebabApp.current.settings.posId
+        txtPosAddress.text = KebabApp.current.settings.eftPosAddress
 
     }
     @IBAction func pairButtonClicked(_ sender: Any) {
-        KebabApp.current.settings.posId = txt_posId.text
-        KebabApp.current.settings.eftPosAddress = txt_posAddress.text
+        KebabApp.current.settings.posId = txtPosId.text
+        KebabApp.current.settings.eftPosAddress = txtPosAddress.text
         KebabApp.current.settings.encriptionKey = nil
         KebabApp.current.settings.hmacKey = nil
         KebabApp.current.client.pair()
@@ -94,8 +90,8 @@ class ConnectionViewController: UITableViewController,NotificationListener {
                 break
                 
             case .transaction:
-                showConnectedTx(KebabApp.current.client.state)
-                
+                //No transaction will be in this screen
+                break
             case .pairing: // Paired, Pairing - we have just finished the pairing flow. OK to ack.
                 showPairing(KebabApp.current.client.state)
             }
@@ -107,12 +103,7 @@ class ConnectionViewController: UITableViewController,NotificationListener {
         guard let pairingFlowState = state.pairingFlowState else {
             return showError("Missing pairingFlowState \(state)")
         }
-        if let oldAlertVc = self.alertVC{
-            oldAlertVc.dismiss(animated: false, completion: nil)
-        }
         let alertVC = UIAlertController(title: "EFTPOS PAIRING PROCESS", message: pairingFlowState.message, preferredStyle: .alert)
-        self.alertVC = alertVC
-        
         
         if pairingFlowState.isAwaitingCheckFromPos {
             SPILogMsg("# [pair_confirm] - confirm the code matches")
@@ -145,7 +136,7 @@ class ConnectionViewController: UITableViewController,NotificationListener {
             alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         }
         DispatchQueue.main.async {
-        self.present(alertVC, animated: true, completion: nil)
+            self.showAlert(alertController: alertVC)
         }
         
         
@@ -158,59 +149,7 @@ class ConnectionViewController: UITableViewController,NotificationListener {
             self.printStatusAndAction(KebabApp.current.client.state)
         }
     }
-    func showConnectedTx(_ state: SPIState) {
-        SPILogMsg("showConnectedTx")
-        
-        guard let txFlowState = state.txFlowState else {
-            showError("Missing txFlowState \(state)")
-            return
-        }
-        let alertVC = UIAlertController(title: "Title", message: txFlowState.displayMessage, preferredStyle: .alert)
-        
-            if (txFlowState.successState == .failed) {
-                SPILogMsg("# [ok] - acknowledge fail")
-                
-                alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { alert in
-                    self.acknowledge()
-                }))
-                
-            } else {
-                
-                if txFlowState.isAwaitingSignatureCheck {
-                    SPILogMsg("# [tx_sign_accept] - Accept Signature")
-                    SPILogMsg("# [tx_sign_decline] - Decline Signature")
-                    
-                    alertVC.addAction(UIAlertAction(title: "Accept Signature", style: .default, handler: { action in
-                        KebabApp.current.client.acceptSignature(true)
-                    }))
-                    
-                    alertVC.addAction(UIAlertAction(title: "Decline Signature", style: .default, handler: { action in
-                        KebabApp.current.client.acceptSignature(false)
-                    }))
-                }
-                
-                if !txFlowState.isFinished {
-                    SPILogMsg("# [tx_cancel] - Attempt to Cancel Transaction")
-                    
-                    if !state.txFlowState.isAttemptingToCancel {
-                        alertVC.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
-                            KebabApp.current.client.cancelTransaction()
-                        }))
-                    }
-                    
-                } else {
-                    SPILogMsg("# [ok] - acknowledge transaction success")
-                    
-                    alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                        self.acknowledge()
-                    }))
-                }
-            }
-        DispatchQueue.main.async {
-            self.present(alertVC, animated: true, completion: nil)
-        }
-        
-    }
+
     func showError(_ msg: String, completion: (() -> Swift.Void)? = nil) {
         SPILogMsg("ERROR: \(msg)")
         showAlert(title:"ERROR!", message: msg)
@@ -222,7 +161,7 @@ class ConnectionViewController: UITableViewController,NotificationListener {
         guard let msg = msg, msg.count > 0 else { return }
         
         DispatchQueue.main.async {
-            self.txt_output.text = msg + "\n================\n" + self.txt_output.text
+            self.txtOutput.text = msg + "\n================\n" + self.txtOutput.text
         }
     }
 }

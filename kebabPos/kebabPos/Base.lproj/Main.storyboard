@@ -173,8 +173,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Qd-BI-WpA">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9Qd-BI-WpA">
                                                     <rect key="frame" x="310" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="swchReceiptFromEFTPOSValueChanged:" destination="VF5-9E-4jW" eventType="valueChanged" id="2KE-ML-Ypg"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -201,8 +204,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r2S-gH-L8p">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="r2S-gH-L8p">
                                                     <rect key="frame" x="310" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="swchSignatureFromEFTPOSValueChanged:" destination="VF5-9E-4jW" eventType="valueChanged" id="wY2-9o-OiE"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -576,14 +582,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="btnConnection" destination="guJ-P5-LFD" id="FE9-Wc-iq9"/>
-                        <outlet property="btnReceiptFromEFTPos" destination="9Qd-BI-WpA" id="2Gc-rX-J7X"/>
                         <outlet property="lblExtraOption" destination="ZfR-qu-WXC" id="MB8-ug-kGN"/>
                         <outlet property="lblPosAddress" destination="UhR-bd-bfC" id="6ac-D9-Whq"/>
                         <outlet property="lblPosId" destination="WQc-34-pqQ" id="c1t-XD-s61"/>
                         <outlet property="lblStatus" destination="gn2-HF-yej" id="fdZ-pT-g7T"/>
                         <outlet property="lbl_flowStatus" destination="3jY-SR-5p4" id="KB9-kE-Psg"/>
                         <outlet property="segmentExtraAmount" destination="GLt-dz-UEd" id="CVj-33-eSY"/>
-                        <outlet property="signatureFromEFTPos" destination="9Qd-BI-WpA" id="jCm-MB-cR4"/>
                         <outlet property="txtExtraAmount" destination="ahM-5g-kXF" id="T3u-q5-zG4"/>
                         <outlet property="txtOutput" destination="fat-dE-x2l" id="UUt-5j-lZ1"/>
                         <outlet property="txtReferenceId" destination="Evj-HA-dDj" id="Dl4-gg-jJA"/>
@@ -675,64 +679,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="AVX-kl-p07">
-                                        <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AVX-kl-p07" id="twj-kA-Tnd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receipt from EFTPOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZU-cy-ibp">
-                                                    <rect key="frame" x="16" y="-0.5" width="165.5" height="44.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="hf9-c2-MfS"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YYI-09-QyT">
-                                                    <rect key="frame" x="310" y="6.5" width="51" height="31"/>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="YYI-09-QyT" firstAttribute="centerY" secondItem="twj-kA-Tnd" secondAttribute="centerY" id="GJb-7N-Thw"/>
-                                                <constraint firstItem="YYI-09-QyT" firstAttribute="trailing" secondItem="twj-kA-Tnd" secondAttribute="trailingMargin" id="GR2-eD-jkU"/>
-                                                <constraint firstItem="uZU-cy-ibp" firstAttribute="leading" secondItem="twj-kA-Tnd" secondAttribute="leadingMargin" id="Naw-ZB-bmi"/>
-                                                <constraint firstItem="uZU-cy-ibp" firstAttribute="centerY" secondItem="twj-kA-Tnd" secondAttribute="centerY" id="h4o-Hn-nJH"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="7IK-ga-Esb">
-                                        <rect key="frame" x="0.0" y="187.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7IK-ga-Esb" id="Kkt-UY-52c">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Signature from EFTPOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0D-FD-h82">
-                                                    <rect key="frame" x="16" y="-0.5" width="181" height="44.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="d8l-b2-S38"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7m-OL-OSx">
-                                                    <rect key="frame" x="310" y="6.5" width="51" height="31"/>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="p0D-FD-h82" firstAttribute="leading" secondItem="Kkt-UY-52c" secondAttribute="leadingMargin" id="8az-cN-wTU"/>
-                                                <constraint firstItem="p0D-FD-h82" firstAttribute="centerY" secondItem="Kkt-UY-52c" secondAttribute="centerY" id="ALk-yM-Dgp"/>
-                                                <constraint firstItem="R7m-OL-OSx" firstAttribute="trailing" secondItem="Kkt-UY-52c" secondAttribute="trailingMargin" id="G7b-BN-NGI"/>
-                                                <constraint firstItem="R7m-OL-OSx" firstAttribute="centerY" secondItem="Kkt-UY-52c" secondAttribute="centerY" id="qzF-sm-SxW"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WnU-3T-AYu">
-                                        <rect key="frame" x="0.0" y="231.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WnU-3T-AYu" id="CJ2-QV-M8M">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -753,7 +701,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Uo3-vI-LvL">
-                                        <rect key="frame" x="0.0" y="275.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="187.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uo3-vI-LvL" id="Enl-Gq-XV6">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -763,8 +711,7 @@
                                                     <rect key="frame" x="138.5" y="7" width="98" height="30"/>
                                                     <state key="normal" title="Cancel Pairing"/>
                                                     <connections>
-                                                        <action selector="pairButtonClicked:" destination="gIy-KG-2PR" eventType="touchUpInside" id="xR0-RC-Yww"/>
-                                                        <action selector="pairingCancel" destination="gIy-KG-2PR" eventType="touchUpInside" id="7iW-vV-t6J"/>
+                                                        <action selector="pairingCancel" destination="gIy-KG-2PR" eventType="touchUpInside" id="dHO-qh-cXT"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -775,7 +722,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mvi-eL-Hoh">
-                                        <rect key="frame" x="0.0" y="319.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="231.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mvi-eL-Hoh" id="MiT-5R-SVv">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -800,7 +747,7 @@
                             <tableViewSection id="yq4-qt-NZB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="290" id="6tv-rm-yE4">
-                                        <rect key="frame" x="0.0" y="399.5" width="375" height="290"/>
+                                        <rect key="frame" x="0.0" y="311.5" width="375" height="290"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6tv-rm-yE4" id="fnp-qj-BDf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="289.5"/>
@@ -832,9 +779,9 @@
                     <navigationItem key="navigationItem" title="Connection" id="alk-eV-Ewt"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="txt_output" destination="dVW-mF-mXi" id="H3D-zL-c3F"/>
-                        <outlet property="txt_posAddress" destination="LDO-Yu-SDM" id="3Ae-jC-wKB"/>
-                        <outlet property="txt_posId" destination="hsd-rZ-tuO" id="1L7-kq-yQN"/>
+                        <outlet property="txtOutput" destination="dVW-mF-mXi" id="C8Q-oG-5QU"/>
+                        <outlet property="txtPosAddress" destination="LDO-Yu-SDM" id="g9H-Rl-jgy"/>
+                        <outlet property="txtPosId" destination="hsd-rZ-tuO" id="5Kt-g6-5hG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnJ-6o-2qA" userLabel="First Responder" sceneMemberID="firstResponder"/>

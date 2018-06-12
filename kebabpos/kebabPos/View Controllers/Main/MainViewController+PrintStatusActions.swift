@@ -105,11 +105,11 @@ extension MainViewController{
             logMessage(String(format:"# Scheme: %@", purchaseResponse.schemeName));
             logMessage(String(format:"# Customer Receipt:"));
             logMessage((!purchaseResponse.wasCustomerReceiptPrinted()) ? purchaseResponse.getCustomerReceipt() : "# PRINTED FROM EFTPOS");
-            logMessage(String(format:"# PURCHASE: %@", purchaseResponse.getPurchaseAmount()));
-            logMessage(String(format:"# TIP: %@", purchaseResponse.getTipAmount()));
-            logMessage(String(format:"# CASHOUT: %@", purchaseResponse.getCashoutAmount()));
-            logMessage(String(format:"# BANKED NON-CASH AMOUNT: %@", purchaseResponse.getBankNonCashAmount()));
-            logMessage(String(format:"# BANKED CASH AMOUNT: %@", purchaseResponse.getBankCashAmount()));
+            logMessage(String(format:"# PURCHASE: %i", purchaseResponse.getPurchaseAmount()));
+            logMessage(String(format:"# TIP: %i", purchaseResponse.getTipAmount()));
+            logMessage(String(format:"# CASHOUT: %i", purchaseResponse.getCashoutAmount()));
+            logMessage(String(format:"# BANKED NON-CASH AMOUNT: %i", purchaseResponse.getBankNonCashAmount()));
+            logMessage(String(format:"# BANKED CASH AMOUNT: %i", purchaseResponse.getBankCashAmount()));
             //
         //    break;
         case .failed:

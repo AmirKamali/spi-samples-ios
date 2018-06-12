@@ -14,8 +14,6 @@ class MainViewController: UITableViewController,NotificationListener {
     @IBOutlet weak var lblPosId: UILabel!
     @IBOutlet weak var lblPosAddress: UILabel!
     @IBOutlet weak var lblExtraOption: UILabel!
-    @IBOutlet weak var btnReceiptFromEFTPos: UISwitch!
-    @IBOutlet weak var signatureFromEFTPos: UISwitch!
     @IBOutlet weak var btnConnection: UIBarButtonItem!
     @IBOutlet weak var txtTransactionAmount: UITextField!
     @IBOutlet weak var txtExtraAmount: UITextField!
@@ -45,14 +43,6 @@ class MainViewController: UITableViewController,NotificationListener {
     
     // MARK: - Table view data source
     
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return super.numberOfSections(in: tableView)
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return super.tableView(tableView, numberOfRowsInSection: section)
-    }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath == indexPath_extraAmount && segmentExtraAmount.selectedSegmentIndex == 0){
             return 0
@@ -64,6 +54,14 @@ class MainViewController: UITableViewController,NotificationListener {
         lblExtraOption.text = segmentExtraAmount.titleForSegment(at: segmentExtraAmount.selectedSegmentIndex)
         tableView.endUpdates()
     }
+    @IBAction func swchReceiptFromEFTPOSValueChanged(_ sender: UISwitch) {
+        client.config.promptForCustomerCopyOnEftpos = sender.isOn
+    }
+    
+    @IBAction func swchSignatureFromEFTPOSValueChanged(_ sender: UISwitch) {
+        client.config.signatureFlowOnEftpos = sender.isOn
+    }
+    
     var client:SPIClient{
         return KebabApp.current.client
     }

@@ -44,7 +44,8 @@ extension MainViewController{
         
        // Console.WriteLine("# ----------- AVAILABLE ACTIONS ------------");
         if client.state.flow == .idle {
-            
+            //clear UI
+            self.presentedViewController?.dismiss(animated: false,completion: nil)
         }
         if (client.state.status == .unpaired && client.state.flow == .idle){
             //Console.WriteLine("# [pos_id:CITYKEBAB1] - Set the POS ID");
@@ -78,11 +79,10 @@ extension MainViewController{
         if client.state.flow == .transaction , let txState = client.state.txFlowState{
             
             if (txState.isAwaitingSignatureCheck){
-               // console.WriteLine("# [tx_sign_accept] - Accept Signature");
-               // console.WriteLine("# [tx_sign_decline] - Decline Signature");
+               tx_signature()
             }
             if (txState.isAwaitingPhoneForAuth){
-               // Console.WriteLine("# [tx_auth_code:123456] - Submit Phone For Auth Code");
+                tx_auth_code()
             }
         }
         
@@ -90,12 +90,11 @@ extension MainViewController{
         {
             
             if (!client.state.txFlowState.isFinished && !client.state.txFlowState.isAttemptingToCancel){
-               // Console.WriteLine("# [tx_cancel] - Attempt to Cancel Tx");
+               tx_cancel()
             }
             
             if (client.state.txFlowState.isFinished){
                 ok()
-              //  Console.WriteLine("# [ok] - acknowledge final");
             }
         }
     }
@@ -109,9 +108,92 @@ extension MainViewController{
         
     }
     func tx_cancel(){
-        client.cancelTransaction()
-    }
-    func tx_auth_code(){
+        let alertVC = UIAlertController(title: "Message", message: client.state.txFlowState.displayMessage, preferredStyle: .alert)
+        let cancelBtn = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            self.client.cancelTransaction()
+        }
+        alertVC.addAction(cancelBtn)
+        showAlert(alertController: alertVC)
         
     }
+    func tx_auth_code(){
+        var txtAuthCode:UITextField?
+        let alertVC = UIAlertController(title: "Message", message: "Submit Phone for Auth Code", preferredStyle: .alert)
+        _ = alertVC.addTextField { (txt) in
+            txtAuthCode = txt
+            txt.text = "Enter code"
+        }
+        let submitBtn = UIAlertAction(title: "Submit", style: .default) { (action) in
+            self.client.submitAuthCode(txtAuthCode?.text, completion: { (result) in
+                self.logMessage(String(format:"Valid format: %@)",result?.isValidFormat ?? false))
+                self.logMessage(String(format:"Message: %@", result?.message ?? "-"))
+            })
+        }
+        alertVC.addAction(submitBtn)
+        showAlert(alertController: alertVC)
+    }
+    func tx_signature(){
+        let alertVC = UIAlertController(title: "Message", message: "Select Action", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "Accept Signature", style: .default, handler: { action in
+        KebabApp.current.client.acceptSignature(true)
+                                }))
+        
+        alertVC.addAction(UIAlertAction(title: "Decline Signature", style: .default, handler: { action in
+                                    KebabApp.current.client.acceptSignature(false)
+                                }))
+        showAlert(alertController: alertVC)
+    }
+    //    func showConnectedTx(_ state: SPIState) {
+    //        SPILogMsg("showConnectedTx")
+    //
+    //        guard let txFlowState = state.txFlowState else {
+    //            showError("Missing txFlowState \(state)")
+    //            return
+    //        }
+    //        let alertVC = UIAlertController(title: "Title", message: txFlowState.displayMessage, preferredStyle: .alert)
+    //
+    //            if (txFlowState.successState == .failed) {
+    //                SPILogMsg("# [ok] - acknowledge fail")
+    //
+    //                alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { alert in
+    //                    self.acknowledge()
+    //                }))
+    //
+    //            } else {
+    //
+    //                if txFlowState.isAwaitingSignatureCheck {
+    //                    SPILogMsg("# [tx_sign_accept] - Accept Signature")
+    //                    SPILogMsg("# [tx_sign_decline] - Decline Signature")
+    //
+    //                    alertVC.addAction(UIAlertAction(title: "Accept Signature", style: .default, handler: { action in
+    //                        KebabApp.current.client.acceptSignature(true)
+    //                    }))
+    //
+    //                    alertVC.addAction(UIAlertAction(title: "Decline Signature", style: .default, handler: { action in
+    //                        KebabApp.current.client.acceptSignature(false)
+    //                    }))
+    //                }
+    //
+    //                if !txFlowState.isFinished {
+    //                    SPILogMsg("# [tx_cancel] - Attempt to Cancel Transaction")
+    //
+    //                    if !state.txFlowState.isAttemptingToCancel {
+    //                        alertVC.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
+    //                            KebabApp.current.client.cancelTransaction()
+    //                        }))
+    //                    }
+    //
+    //                } else {
+    //                    SPILogMsg("# [ok] - acknowledge transaction success")
+    //
+    //                    alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+    //                        self.acknowledge()
+    //                    }))
+    //                }
+    //            }
+    //        DispatchQueue.main.async {
+    //            self.showAlert(alertController: alertVC)
+    //        }
+    //
+    //    }
 }
