@@ -20,7 +20,9 @@ class MainViewController: UITableViewController,NotificationListener {
     @IBOutlet weak var txtReferenceId: UITextField!
     @IBOutlet weak var txtOutput: UITextView!
     @IBOutlet weak var segmentExtraAmount: UISegmentedControl!
-    
+    @IBOutlet weak var swchReceiptFromEFTPos: UISwitch!
+    @IBOutlet weak var swchSignatureFromEFTPos: UISwitch!
+
     var newRefrenceId:String {
         let randomName = "localRef1"//\(arc4random()%999999)"
         return randomName
@@ -32,6 +34,9 @@ class MainViewController: UITableViewController,NotificationListener {
     override func viewDidLoad() {
         super.viewDidLoad()
         txtReferenceId.text = newRefrenceId
+        swchReceiptFromEFTPos.isOn = KebabApp.current.settings.customerReceiptFromEFTPos ?? false
+        swchSignatureFromEFTPos.isOn = KebabApp.current.settings.customerSignatureromEFTPos ?? false
+        
         registerForEvents(appEvents: [.connectionStatusChanged,.transactionFlowStateChanged])
         client.start()
     }
@@ -56,10 +61,12 @@ class MainViewController: UITableViewController,NotificationListener {
     }
     @IBAction func swchReceiptFromEFTPOSValueChanged(_ sender: UISwitch) {
         client.config.promptForCustomerCopyOnEftpos = sender.isOn
+        KebabApp.current.settings.customerReceiptFromEFTPos = sender.isOn
     }
     
     @IBAction func swchSignatureFromEFTPOSValueChanged(_ sender: UISwitch) {
         client.config.signatureFlowOnEftpos = sender.isOn
+        KebabApp.current.settings.customerSignatureromEFTPos = sender.isOn
     }
     
     var client:SPIClient{

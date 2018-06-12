@@ -13,12 +13,14 @@ class SettingsProvider{
         case eftposAddress
         case encriptionKey
         case hmacKey
+        case customerReceipt
+        case customerSignature
     }
     init() {
         restoreDefaultValues()
     }
     func ReadSettingsFrom(key: SettingKeys) -> Any? {
-        return UserDefaults.standard.object(forKey: key.rawValue)
+        return UserDefaults.standard.value(forKey: key.rawValue)
     }
     func SetSettingsForKey(key: SettingKeys, value: Any?) {
         UserDefaults.standard.setValue(value, forKey: key.rawValue)
@@ -46,5 +48,13 @@ class SettingsProvider{
     var hmacKey:String?{
         get {return ReadSettingsFrom(key: .hmacKey) as? String }
         set {SetSettingsForKey(key: .hmacKey, value: newValue) }
+    }
+    var customerReceiptFromEFTPos:Bool?{
+        get {return ReadSettingsFrom(key: .customerReceipt) as? Bool }
+        set {SetSettingsForKey(key: .customerReceipt, value: newValue) }
+    }
+    var customerSignatureromEFTPos:Bool?{
+        get {return ReadSettingsFrom(key: .customerSignature) as? Bool }
+        set {SetSettingsForKey(key: .customerSignature, value: newValue) }
     }
 }

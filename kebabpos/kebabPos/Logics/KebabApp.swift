@@ -31,7 +31,10 @@ class KebabApp:NSObject{
         }
         client.eftposAddress = eftPosAddress;
         client.posId = eftPosId;
+        client.config.promptForCustomerCopyOnEftpos = false
+        client.config.signatureFlowOnEftpos = false
         client.delegate = self
+        
         
     }
     func start(){
