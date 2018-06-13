@@ -7,7 +7,7 @@
 //
 
 import Foundation
-extension Date{
+extension Date {
     func toString(includeTime: Bool = false) -> String {
         var format = ""
         if (includeTime) {
@@ -24,9 +24,9 @@ extension Date{
     }
 
 }
-extension Bool{
-    func toString()->String{
-        if (self){
+extension Bool {
+    func toString() -> String {
+        if (self) {
             return "true"
         }
         return "false"

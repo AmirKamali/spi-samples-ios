@@ -7,7 +7,7 @@
 //
 
 import Foundation
-enum AppEvent:String{
+enum AppEvent: String {
     case connectionStatusChanged
     case pairingFlowChanged
     case transactionFlowStateChanged

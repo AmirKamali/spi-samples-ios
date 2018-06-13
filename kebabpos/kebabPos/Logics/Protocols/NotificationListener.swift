@@ -9,12 +9,12 @@
 import Foundation
 
 @objc
-protocol NotificationListener{
-    @objc func onNotificationArrived(notification:NSNotification)
+protocol NotificationListener {
+    @objc func onNotificationArrived(notification: NSNotification)
 }
-extension NotificationListener{
-    func registerForEvents(appEvents:[AppEvent]){
-        for event in appEvents{
+extension NotificationListener {
+    func registerForEvents(appEvents: [AppEvent]) {
+        for event in appEvents {
             NotificationCenter.default.addObserver(self, selector: #selector(onNotificationArrived), name: NSNotification.Name(rawValue: event.rawValue), object: nil)
         }
     }

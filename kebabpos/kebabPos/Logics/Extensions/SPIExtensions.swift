@@ -8,8 +8,8 @@
 
 import Foundation
 import SPIClient_iOS
-extension SPIMessageSuccessState{
-    var name:String{
+extension SPIMessageSuccessState {
+    var name: String {
         switch self {
         case .failed:
             return "failed"
@@ -20,8 +20,8 @@ extension SPIMessageSuccessState{
         }
     }
 }
-extension SPIFlow{
-    var name:String{
+extension SPIFlow {
+    var name: String {
         switch self {
         case .idle:
             return "Idle"
@@ -32,8 +32,8 @@ extension SPIFlow{
         }
     }
 }
-extension SPITransactionType{
-    var name:String{
+extension SPITransactionType {
+    var name: String {
         switch self {
         case .getLastTransaction:
             return "Get Last Transaction"
