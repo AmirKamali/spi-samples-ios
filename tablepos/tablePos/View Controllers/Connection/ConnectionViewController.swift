@@ -16,27 +16,28 @@ class ConnectionViewController: UITableViewController, NotificationListener {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForEvents(appEvents: [.connectionStatusChanged, .pairingFlowChanged, .transactionFlowStateChanged])
-        txtPosId.text = KebabApp.current.settings.posId
-        txtPosAddress.text = KebabApp.current.settings.eftPosAddress
+        txtPosId.text = TablePosApp.current.settings.posId
+        txtPosAddress.text = TablePosApp.current.settings.eftPosAddress
 
     }
     @IBAction func pairButtonClicked(_ sender: Any) {
-        KebabApp.current.settings.posId = txtPosId.text
-        KebabApp.current.client.posId = txtPosId.text
+        TablePosApp.current.settings.posId = txtPosId.text
+        TablePosApp.current.client.posId = txtPosId.text
         
-        KebabApp.current.settings.eftPosAddress = txtPosAddress.text
-        KebabApp.current.client.eftposAddress = txtPosAddress.text
+        TablePosApp.current.settings.eftPosAddress = txtPosAddress.text
+        TablePosApp.current.client.eftposAddress = txtPosAddress.text
         
-        KebabApp.current.settings.encriptionKey = nil
-        KebabApp.current.settings.hmacKey = nil
+        TablePosApp.current.settings.encriptionKey = nil
+        TablePosApp.current.settings.hmacKey = nil
         
-        KebabApp.current.client.pair()
+        
+        TablePosApp.current.client.pair()
     }
     @IBAction func pairingCancel() {
-        KebabApp.current.client.pairingCancel()
+        TablePosApp.current.client.pairingCancel()
     }
     @IBAction func unpair() {
-        KebabApp.current.client.unpair()
+        TablePosApp.current.client.unpair()
     }
 
     @objc
@@ -72,7 +73,7 @@ class ConnectionViewController: UITableViewController, NotificationListener {
             case .idle:
                 break
             case .pairing:
-                KebabApp.current.client.ackFlowEndedAndBack { (alreadyInIdle, state) in
+                TablePosApp.current.client.ackFlowEndedAndBack { (alreadyInIdle, state) in
                     print("setting to idle :\(alreadyInIdle) state:\(String(describing: state))")
                     if let state = state {
                         self.showPairing(state)
@@ -80,7 +81,7 @@ class ConnectionViewController: UITableViewController, NotificationListener {
                 }
 
             default:
-                showError("# .. Unexpected Flow .. \(KebabApp.current.client.state.flow.rawValue)")
+                showError("# .. Unexpected Flow .. \(TablePosApp.current.client.state.flow.rawValue)")
             }
 
         case .pairedConnecting, .pairedConnected:
@@ -94,7 +95,7 @@ class ConnectionViewController: UITableViewController, NotificationListener {
                 //No transaction will be in this screen
                 break
             case .pairing: // Paired, Pairing - we have just finished the pairing flow. OK to ack.
-                showPairing(KebabApp.current.client.state)
+                showPairing(TablePosApp.current.client.state)
             }
         }
     }
@@ -114,7 +115,7 @@ class ConnectionViewController: UITableViewController, NotificationListener {
             }))
 
             alertVC.addAction(UIAlertAction(title: "YES", style: .default, handler: { _ in
-                KebabApp.current.client.pairingConfirmCode()
+                TablePosApp.current.client.pairingConfirmCode()
             }))
 
         } else if !pairingFlowState.isFinished {
@@ -144,8 +145,8 @@ class ConnectionViewController: UITableViewController, NotificationListener {
     func acknowledge() {
         SPILogMsg("acknowledge")
 
-        KebabApp.current.client.ackFlowEndedAndBack {  _, state in
-            self.printStatusAndAction(KebabApp.current.client.state)
+        TablePosApp.current.client.ackFlowEndedAndBack {  _, state in
+            self.printStatusAndAction(TablePosApp.current.client.state)
         }
     }
 

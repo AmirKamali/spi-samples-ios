@@ -1,0 +1,18 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '8.0'
+
+target 'tablePos' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for tablePos
+  #pod 'SPIClient-iOS', '~> 2.0.5'
+  #pod 'SPIClient-iOS',  :git => 'https://github.com/AmirKamali/spi-client-ios.git', :branch => 'version-2.1-PayAtTable'  
+  
+  #pod 'SPIClient-iOS',  :git => 'https://github.com/AmirKamali/spi-client-ios.git', :tag => 'v2.1e'  
+  
+  #pod 'SPIClient-iOS',  :git => 'https://github.com/AmirKamali/spi-client-ios.git', :tag => 'v2.1'  
+
+  pod 'SPIClient-iOS',    :path => '/Users/amir/Documents/Dev Projects/spi-client'
+
+end

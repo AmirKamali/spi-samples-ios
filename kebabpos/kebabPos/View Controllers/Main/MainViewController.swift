@@ -24,7 +24,7 @@ class MainViewController: UITableViewController, NotificationListener {
     @IBOutlet weak var swchSignatureFromEFTPos: UISwitch!
 
     var newRefrenceId: String {
-        let randomName = "localRef1"//\(arc4random()%999999)"
+        let randomName = "RFC\(arc4random()%999999)"
         return randomName
     }
     let indexPath_extraAmount = IndexPath(row: 2, section: 3)
@@ -34,11 +34,15 @@ class MainViewController: UITableViewController, NotificationListener {
     override func viewDidLoad() {
         super.viewDidLoad()
         txtReferenceId.text = newRefrenceId
-        swchReceiptFromEFTPos.isOn = KebabApp.current.settings.customerReceiptFromEFTPos ?? false
-        swchSignatureFromEFTPos.isOn = KebabApp.current.settings.customerSignatureromEFTPos ?? false
+        restoreConfig()
 
         registerForEvents(appEvents: [.connectionStatusChanged, .transactionFlowStateChanged])
         client.start()
+    }
+    func restoreConfig(){
+        swchReceiptFromEFTPos.isOn = KebabApp.current.settings.customerReceiptFromEFTPos ?? false
+        swchSignatureFromEFTPos.isOn = KebabApp.current.settings.customerSignatureromEFTPos ?? false
+        
     }
 
     override func didReceiveMemoryWarning() {
