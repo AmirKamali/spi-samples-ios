@@ -8,6 +8,7 @@
 
 import Foundation
 import SPIClient_iOS
+
 class KebabApp: NSObject {
     private static var _instance: KebabApp = KebabApp()
     var settings = SettingsProvider()

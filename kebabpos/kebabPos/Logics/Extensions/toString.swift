@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 extension Date {
     func toString(includeTime: Bool = false) -> String {
         var format = ""

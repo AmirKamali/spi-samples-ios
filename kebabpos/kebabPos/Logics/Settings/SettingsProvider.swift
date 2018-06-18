@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class SettingsProvider {
     enum SettingKeys: String {
         case posId

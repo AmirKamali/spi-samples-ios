@@ -8,6 +8,7 @@
 
 import UIKit
 import SPIClient_iOS
+
 class ConnectionViewController: UITableViewController, NotificationListener {
     @IBOutlet weak var txtOutput: UITextView!
     @IBOutlet weak var txtPosId: UITextField!

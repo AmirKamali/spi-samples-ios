@@ -8,6 +8,7 @@
 
 import Foundation
 import SPIClient_iOS
+
 extension SPIMessageSuccessState {
     var name: String {
         switch self {

@@ -8,6 +8,7 @@
 
 import Foundation
 import SPIClient_iOS
+
 extension MainViewController {
     func updateUIFlowInfo(state: SPIState) {
         lblStatus.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
@@ -101,7 +102,7 @@ extension MainViewController {
         }
         alertVC.addAction(cancelBtn)
         showAlert(alertController: alertVC)
-        
+
     }
     func tx_auth_code() {
         var txtAuthCode: UITextField?

@@ -8,6 +8,7 @@
 
 import Foundation
 import SPIClient_iOS
+
 extension MainViewController {
     @IBAction func btnPurchaseClicked(_ sender: Any) {
         let posRefId = "kebab-" + Date().toString(format: "dd-MM-yyyy-HH-mm-ss")
