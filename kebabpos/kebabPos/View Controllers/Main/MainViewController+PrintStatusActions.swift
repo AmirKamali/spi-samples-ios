@@ -138,7 +138,7 @@ extension MainViewController {
             logMessage(String(format: "# Scheme: %@", refundResponse.schemeName))
             logMessage(String(format: "# Customer Receipt:"))
             logMessage((!refundResponse.wasCustomerReceiptPrinted()) ? refundResponse.getCustomerReceipt() : "# PRINTED FROM EFTPOS")
-            logMessage(String(format: "# REFUNDED AMOUNT: %@", refundResponse.getRefundAmount()))
+            logMessage(String(format: "# REFUNDED AMOUNT: %i", refundResponse.getRefundAmount()))
             break
         case .failed:
             logMessage(String(format: "# REFUND FAILED!"))
@@ -173,15 +173,15 @@ extension MainViewController {
             logMessage(String(format: "# Scheme: %@", cashoutResponse.schemeName))
             logMessage(String(format: "# Customer Receipt:"))
             logMessage(((!cashoutResponse.wasCustomerReceiptPrinted()) ? cashoutResponse.getCustomerReceipt() : "# PRINTED FROM EFTPOS"))
-            logMessage(String(format: "# CASHOUT: %@", cashoutResponse.getCashoutAmount()))
-            logMessage(String(format: "# BANKED NON-CASH AMOUNT: %@", cashoutResponse.getBankNonCashAmount()))
-            logMessage(String(format: "# BANKED CASH AMOUNT: %@", cashoutResponse.getBankCashAmount()))
+            logMessage(String(format: "# CASHOUT: %i", cashoutResponse.getCashoutAmount()))
+            logMessage(String(format: "# BANKED NON-CASH AMOUNT: %i", cashoutResponse.getBankNonCashAmount()))
+            logMessage(String(format: "# BANKED CASH AMOUNT: %i", cashoutResponse.getBankCashAmount()))
             break
         case .failed:
             logMessage(String(format: "# CASHOUT FAILED!"))
-            logMessage(String(format: "# Error: %@", txState.response.error))
-            logMessage(String(format: "# Error Detail: %@", txState.response.errorDetail))
             if (txState.response != nil) {
+                logMessage(String(format: "# Error: %@", txState.response.error))
+                logMessage(String(format: "# Error Detail: %@", txState.response.errorDetail))
                 cashoutResponse = SPICashoutOnlyResponse(message: txState.response)
                 logMessage(String(format: "# Response: %@", cashoutResponse.getText()))
                 logMessage(String(format: "# RRN: %@", cashoutResponse.getRRN()))

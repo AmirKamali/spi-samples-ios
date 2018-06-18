@@ -46,28 +46,12 @@ extension MainViewController {
             //clear UI
             self.presentedViewController?.dismiss(animated: false, completion: nil)
         }
-        if (client.state.status == .unpaired && client.state.flow == .idle) {
-            //Console.WriteLine("# [pos_id:CITYKEBAB1] - Set the POS ID");
-        }
-        if (client.state.status == .unpaired || client.state.status == .pairedConnecting) {
-            //Console.WriteLine("# [eftpos_address:10.161.104.104] - Set the EFTPOS ADDRESS");
-        }
-
-        if (client.state.status == .unpaired || client.state.status == .pairedConnecting) {
-          //  Console.WriteLine("# [eftpos_address:10.161.104.104] - Set the EFTPOS ADDRESS");
-        }
-        if (client.state.status == .unpaired && client.state.flow == .idle) {
-            //Console.WriteLine("# [pair] - Pair with Eftpos");
-        }
-        if (client.state.status != .unpaired && client.state.flow == .idle) {
-            //Console.WriteLine("# [unpair] - Unpair and Disconnect");
-        }
         if (client.state.flow == .pairing) {
             if (client.state.pairingFlowState.isAwaitingCheckFromPos) {
                 client.pairingConfirmCode()
             }
             if (!client.state.pairingFlowState.isFinished) {
-                //Console.WriteLine("# [pair_cancel] - Cancel Pairing");
+                pair_cancel()
             }
             if (client.state.pairingFlowState.isFinished) {
                 ok()
@@ -99,9 +83,7 @@ extension MainViewController {
             DispatchQueue.main.async {
                 self.stateChanged(state: state)
             }
-
         }
-
     }
     func tx_cancel() {
         let alertVC = UIAlertController(title: "Message", message: client.state.txFlowState.displayMessage, preferredStyle: .alert)
@@ -111,6 +93,15 @@ extension MainViewController {
         alertVC.addAction(cancelBtn)
         showAlert(alertController: alertVC)
 
+    }
+    func pair_cancel() {
+        let alertVC = UIAlertController(title: "Message", message: client.state.txFlowState.displayMessage, preferredStyle: .alert)
+        let cancelBtn = UIAlertAction(title: "Cancel", style: .default) { (_) in
+            self.client.pairingCancel()
+        }
+        alertVC.addAction(cancelBtn)
+        showAlert(alertController: alertVC)
+        
     }
     func tx_auth_code() {
         var txtAuthCode: UITextField?

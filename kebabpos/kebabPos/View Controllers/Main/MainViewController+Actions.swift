@@ -10,7 +10,7 @@ import Foundation
 import SPIClient_iOS
 extension MainViewController {
     @IBAction func btnPurchaseClicked(_ sender: Any) {
-        let referenceId = newRefrenceId //Local referenceId
+        let posRefId = "kebab-" + Date().toString(format: "dd-MM-yyyy-HH-mm-ss")
 
         guard let amount = Int(txtTransactionAmount.text ?? ""), amount > 0 else { //Amount Cents
             return
@@ -31,37 +31,31 @@ extension MainViewController {
         let promptCashout = false
 
         client.enablePayAtTable()
-        client.initiatePurchaseTxV2(referenceId, purchaseAmount: amount, tipAmount: tipAmount, cashoutAmount: cashout, promptForCashout: promptCashout, completion: printResult)
-    }
-    @IBAction func btnMotoClicked(_ sender: Any) {
-        let referenceId = newRefrenceId //Local referenceId
-        guard let amount = Int(txtTransactionAmount.text ?? ""), amount > 0 else { //Amount Cents
-            return
-        }
-        client.initiateMotoPurchaseTx(referenceId, amountCents: amount, completion: printResult)
+        client.initiatePurchaseTxV2(posRefId, purchaseAmount: amount, tipAmount: tipAmount, cashoutAmount: cashout, promptForCashout: promptCashout, completion: printResult)
     }
     @IBAction func btnRefundClicked(_ sender: Any) {
-        let referenceId = newRefrenceId //Local referenceId
+        let posRefId = "yuck-" + Date().toString(format: "dd-MM-yyyy-HH-mm-ss")
+
         guard let amount = Int(txtTransactionAmount.text ?? ""), amount > 0 else { //Amount Cents
             return
         }
-        client.initiateRefundTx(referenceId, amountCents: amount, completion: printResult)
+        client.initiateRefundTx(posRefId, amountCents: amount, completion: printResult)
     }
     @IBAction func btnCashOutClicked(_ sender: Any) {
-        let referenceId = newRefrenceId //Local referenceId
+        let posRefId = "launder-" + Date().toString(format: "dd-MM-yyyy-HH-mm-ss")
+
         guard let amount = Int(txtTransactionAmount.text ?? ""), amount > 0 else { //Amount Cents
             return
         }
-        client.initiateCashoutOnlyTx(referenceId, amountCents: amount, completion: printResult)
+        client.initiateCashoutOnlyTx(posRefId, amountCents: amount, completion: printResult)
     }
     @IBAction func btnSettleClicked(_ sender: Any) {
-        let referenceId = newRefrenceId //Local referenceId
-
-        client.initiateSettleTx(referenceId, completion: printResult)
+        let id = SPIRequestIdHelper.id(for: "settle")
+        client.initiateSettleTx(id, completion: printResult)
     }
     @IBAction func btnSettleEnquiryClicked(_ sender: Any) {
-        let referenceId = newRefrenceId //Local referenceId
-        client.initiateSettlementEnquiry(referenceId, completion: printResult)
+        let id = SPIRequestIdHelper.id(for: "stlenq")
+        client.initiateSettlementEnquiry(id, completion: printResult)
     }
     @IBAction func btnLastTransactionClicked(_ sender: Any) {
         client.initiateGetLastTx(completion: printResult)

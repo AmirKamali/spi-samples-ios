@@ -23,13 +23,13 @@ class ConnectionViewController: UITableViewController, NotificationListener {
     @IBAction func pairButtonClicked(_ sender: Any) {
         KebabApp.current.settings.posId = txtPosId.text
         KebabApp.current.client.posId = txtPosId.text
-        
+
         KebabApp.current.settings.eftPosAddress = txtPosAddress.text
         KebabApp.current.client.eftposAddress = txtPosAddress.text
-        
+
         KebabApp.current.settings.encriptionKey = nil
         KebabApp.current.settings.hmacKey = nil
-        
+
         KebabApp.current.client.pair()
     }
     @IBAction func pairingCancel() {

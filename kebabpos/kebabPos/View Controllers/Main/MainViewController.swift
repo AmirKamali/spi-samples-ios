@@ -23,26 +23,21 @@ class MainViewController: UITableViewController, NotificationListener {
     @IBOutlet weak var swchReceiptFromEFTPos: UISwitch!
     @IBOutlet weak var swchSignatureFromEFTPos: UISwitch!
 
-    var newRefrenceId: String {
-        let randomName = "RFC\(arc4random()%999999)"
-        return randomName
-    }
     let indexPath_extraAmount = IndexPath(row: 2, section: 3)
     let _lastCmd: [String] = []
 
     @IBOutlet weak var lbl_flowStatus: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtReferenceId.text = newRefrenceId
         restoreConfig()
 
         registerForEvents(appEvents: [.connectionStatusChanged, .transactionFlowStateChanged])
         client.start()
     }
-    func restoreConfig(){
+    func restoreConfig() {
         swchReceiptFromEFTPos.isOn = KebabApp.current.settings.customerReceiptFromEFTPos ?? false
         swchSignatureFromEFTPos.isOn = KebabApp.current.settings.customerSignatureromEFTPos ?? false
-        
+
     }
 
     override func didReceiveMemoryWarning() {
